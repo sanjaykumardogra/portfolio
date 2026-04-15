@@ -1,6 +1,6 @@
 ### S K Dogra
-- Senior Business Leader — Projects, Certifications, Turnarounds & Market Expansion
-- 30+ years in Panels, MDF, Laminates & Construction Products
+- Strategic Business Leader | 30+ Years of Industry Expertise | Project Sales
+- Panels, MDF and value-added surface products
 
 #### [sanjaykumardogra.github.io/portfolio](https://sanjaykumardogra.github.io/portfolio/)
 
