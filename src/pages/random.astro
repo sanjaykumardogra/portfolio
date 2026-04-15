@@ -1,0 +1,133 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CommandPrompt from '../components/CommandPrompt.astro';
+---
+
+<MainLayout title="Career | S K Dogra" description="Career highlights and key roles">
+  <CommandPrompt command="curl -s https://www.linkedin.com/in/skdogra" />
+
+  <div class="posts-container">
+    <div class="content-wrapper">
+      <h2>Career Timeline</h2>
+      <ul class="project-list">
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Industry Consultant</span>
+          <span class="project-desc">— Advisory across panels, wood substitutes & allied sectors (Sep 2022 – Present)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Archit Nuwood Industries</span>
+          <span class="project-desc">— National Business Head · 360 CBM/day MDF plant commercialization (Jun 2020 – Sep 2022)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Amul Group of Companies</span>
+          <span class="project-desc">— Business Head · 20 countries, 70 distributors, 3000+ dealers (Apr 2016 – Jun 2020)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">PCM Care JV</span>
+          <span class="project-desc">— Business Head · Railways, Defence, NHAI, Metro & Smart Cities (May 2013 – Apr 2016)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Greenply Industries Limited</span>
+          <span class="project-desc">— DGM, Centralized Biz Dev · India's largest interior infrastructure company (Apr 2006 – May 2013)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Nuchem Limited</span>
+          <span class="project-desc">— Sr. Manager, Business Development · Early MDF market pioneer (Jun 1991 – Apr 2006)</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Indian Plywood Mfg. Co. & Harrison Locks</span>
+          <span class="project-desc">— Sales & Institutional Sales roles (Jul 1984 – May 1991)</span>
+        </li>
+      </ul>
+
+      <h2>Key Impact Areas</h2>
+      <ul class="project-list">
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Greenfield Launches</span>
+          <span class="project-desc">— Led MDF, HPL, WPC, ACP commercialization from plant setup to market scale</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">A2G Project Sales</span>
+          <span class="project-desc">— Secured large-scale tenders across Defence, Railways, NHAI, Housing & Smart Cities</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Quality & Certifications</span>
+          <span class="project-desc">— FSC COC/CW, CARB, GRIHA, IGBC, BIS/ISI, TQM, IMS compliance leadership</span>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <span class="project-link">Distribution Networks</span>
+          <span class="project-desc">— Built and scaled trade, converter & dealer networks across India and 20+ countries</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .posts-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .content-wrapper {
+    padding-left: 20px;
+  }
+
+  h2 {
+    color: var(--terminal-green);
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+  }
+
+  h2:first-child {
+    margin-top: 10px;
+  }
+
+  .project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-list li {
+    display: flex;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  .arrow {
+    color: var(--terminal-green);
+    margin-right: 10px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .project-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+  }
+
+  .project-desc {
+    color: var(--text-muted, #9aa5ce);
+    margin-left: 5px;
+  }
+</style>

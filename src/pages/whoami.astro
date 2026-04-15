@@ -1,0 +1,121 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CommandPrompt from '../components/CommandPrompt.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<MainLayout title="About | S K Dogra" description="About S K Dogra — 30+ years in panels, MDF & construction products">
+  <CommandPrompt command="cat about.md" />
+  
+  <div class="about-page">
+    
+    <div class="about-section">
+      <h2 class="terminal-link"><a href={`${base}whoami`}>~/whoami</a></h2> 
+      <p>
+        I'm S K Dogra — a seasoned business leader with over <strong>30 years</strong> of deep industry experience across panels, MDF, laminates, WPC, HPL, ACP, and value-added surface products.
+      </p>
+      <p>
+        I've held P&L-accountable leadership roles at India's premier interior infrastructure companies — serving as <strong>National Business Head at Archit Nuwood Industries</strong> (360 CBM/day MDF plant), <strong>Business Head at Amul Group</strong> (20 countries, 3000+ dealers), <strong>Business Head at PCM Care JV</strong>, and <strong>Dy General Manager at Greenply Industries</strong> (India's largest interior infrastructure company).
+      </p>
+      <p>
+        My core strength lies in bridging manufacturing output with specification-driven demand. I specialize in <strong>project sales, tender marketing, institutional engagement</strong> across A2G, Defence, Railways, NHAI, Metro Railways, and Smart Cities segments.
+      </p>
+    </div>
+
+    <div class="about-section">
+      <h2>~/core-strengths</h2>
+      <p>
+        <strong>Product launches & market activation</strong> — I've led greenfield-to-commercial launches for MDF, HPL, WPC, ACP, and technical textiles, establishing plant-to-market protocols and building distribution networks from scratch.
+      </p>
+      <p>
+        <strong>Quality certifications & compliance</strong> — deep expertise in FSC COC/CW, CARB, GRIHA, IGBC, BIS/ISI, TQM, and IMS — enabling institutional specification wins across government and private sectors.
+      </p>
+      <p>
+        <strong>Education:</strong> M.Com (Business Administration) from University of Rajasthan, B.Com (Honours) from University of Delhi, and Diploma in Personnel Management from D.A.V. Managing Committee.
+      </p>
+    </div>
+    
+    <div class="about-section">
+      <h1>Why this site?</h1>
+      <p>
+        This site serves as my professional portfolio — a place to share my industry experience, insights on construction materials, and perspectives on business growth in the panels and surface products sector.
+      </p>
+    </div>
+    
+    <div class="about-section">
+      <h2 class="terminal-link"><a href={`${base}ping`}>~/ping</a></h2> 
+      <p>
+        Feel free to reach out to me through any of the following channels or just <a href={`${base}ping`} class="highlight-link">ping me here</a>:
+      </p>
+      <ul class="contact-list">
+        <li><span class="contact-label">Email:</span> <a href="mailto:skdogra11@yahoo.co.in" target="_blank" rel="noopener">skdogra11@yahoo.co.in</a></li>
+        <li><span class="contact-label">LinkedIn:</span> <a href="https://www.linkedin.com/in/skdogra" target="_blank" rel="noopener">skdogra</a></li>
+        <li><span class="contact-label">Phone:</span> +91-99992-30777</li>
+      </ul>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .about-page {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    color: var(--terminal-green);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .about-section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    color: var(--terminal-purple);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: normal;
+  }
+  
+  .terminal-link a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .terminal-link a:hover {
+    text-decoration: underline;
+  }
+  
+  p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-list li {
+    margin-bottom: 10px;
+    padding: 5px 0;
+  }
+  
+  .contact-label {
+    display: inline-block;
+    min-width: 70px;
+    color: var(--date-color);
+  }
+  
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
