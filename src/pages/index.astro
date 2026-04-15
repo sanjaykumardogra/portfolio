@@ -111,6 +111,20 @@ const recentPosts = sortedPosts.slice(0, 5);
     background: var(--hero-bg);
     border-radius: 16px 16px 0 0;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
   }
 
   .hero-badge {
@@ -125,6 +139,8 @@ const recentPosts = sortedPosts.slice(0, 5);
     padding: 4px 14px;
     border-radius: 100px;
     margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease both;
+    animation-delay: 0.2s;
   }
 
   h1 {
@@ -138,6 +154,8 @@ const recentPosts = sortedPosts.slice(0, 5);
     margin-bottom: 16px;
     letter-spacing: -0.02em;
     line-height: 1.15;
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.3s;
   }
 
   .hero-subtitle {
@@ -145,6 +163,8 @@ const recentPosts = sortedPosts.slice(0, 5);
     color: var(--text-muted);
     line-height: 1.7;
     max-width: 600px;
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.4s;
   }
 
   .hero-stats {
@@ -152,8 +172,10 @@ const recentPosts = sortedPosts.slice(0, 5);
     gap: 32px;
     margin: 28px 0;
     padding: 20px 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color-light);
+    border-bottom: 1px solid var(--border-color-light);
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.5s;
   }
 
   .stat {
@@ -163,23 +185,27 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   .stat-number {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-warm);
     line-height: 1.2;
   }
 
   .stat-label {
-    font-size: 0.78rem;
-    color: var(--text-muted);
+    font-size: 0.75rem;
+    color: var(--text-subtle);
     font-weight: 500;
-    margin-top: 2px;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .hero-body {
     margin-bottom: 0;
     line-height: 1.7;
     color: var(--text-muted);
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.6s;
   }
 
   p {
@@ -189,6 +215,8 @@ const recentPosts = sortedPosts.slice(0, 5);
   
   .quick-links {
     margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.3s;
   }
 
   h2 {
@@ -198,7 +226,7 @@ const recentPosts = sortedPosts.slice(0, 5);
     color: var(--accent);
     margin-bottom: 20px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color-light);
   }
 
   .link-grid {
@@ -214,11 +242,18 @@ const recentPosts = sortedPosts.slice(0, 5);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--highlight-bg);
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.5s ease both;
   }
+
+  .link-card:nth-child(1) { animation-delay: 0.35s; }
+  .link-card:nth-child(2) { animation-delay: 0.4s; }
+  .link-card:nth-child(3) { animation-delay: 0.45s; }
+  .link-card:nth-child(4) { animation-delay: 0.5s; }
+  .link-card:nth-child(5) { animation-delay: 0.55s; }
 
   .link-card::before {
     content: '';
@@ -229,17 +264,28 @@ const recentPosts = sortedPosts.slice(0, 5);
     height: 3px;
     background: var(--accent-gradient);
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease;
+  }
+
+  .link-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .link-card:hover {
     border-color: var(--accent-light);
     box-shadow: var(--card-shadow-hover);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     text-decoration: none;
   }
 
-  .link-card:hover::before {
+  .link-card:hover::before,
+  .link-card:hover::after {
     opacity: 1;
   }
 
@@ -247,6 +293,11 @@ const recentPosts = sortedPosts.slice(0, 5);
     color: var(--accent);
     margin-bottom: 10px;
     display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  .link-card:hover .link-card-icon {
+    transform: scale(1.1);
   }
 
   .link-card-title {
@@ -254,6 +305,11 @@ const recentPosts = sortedPosts.slice(0, 5);
     color: var(--accent);
     margin-bottom: 4px;
     font-size: 0.95rem;
+    transition: color 0.25s ease;
+  }
+
+  .link-card:hover .link-card-title {
+    color: var(--accent-deep);
   }
 
   .link-card-desc {
@@ -263,6 +319,8 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   .recent-posts {
     margin-bottom: 20px;
+    animation: fadeInUp 0.6s ease both;
+    animation-delay: 0.4s;
   }
 
   .post-card {
@@ -271,18 +329,19 @@ const recentPosts = sortedPosts.slice(0, 5);
     gap: 16px;
     padding: 16px;
     margin-bottom: 8px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
     color: var(--text-color);
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid transparent;
   }
 
   .post-card:hover {
-    background: var(--highlight-bg);
+    background: var(--highlight-warm);
     border-color: var(--border-color);
     text-decoration: none;
     box-shadow: var(--card-shadow);
+    transform: translateX(4px);
   }
 
   .post-card-number {
@@ -290,8 +349,13 @@ const recentPosts = sortedPosts.slice(0, 5);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--accent);
-    opacity: 0.5;
+    opacity: 0.35;
     min-width: 28px;
+    transition: opacity 0.3s ease;
+  }
+
+  .post-card:hover .post-card-number {
+    opacity: 0.7;
   }
 
   .post-card-body {
@@ -306,6 +370,7 @@ const recentPosts = sortedPosts.slice(0, 5);
     font-weight: 600;
     color: var(--text-color);
     line-height: 1.4;
+    transition: color 0.25s ease;
   }
 
   .post-card:hover .post-card-title {
@@ -313,16 +378,16 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   .post-card-date {
-    color: var(--date-color);
-    font-size: 0.82rem;
+    color: var(--text-subtle);
+    font-size: 0.8rem;
   }
 
   .post-card-arrow {
     font-size: 1.1rem;
     color: var(--text-muted);
     opacity: 0;
-    transform: translateX(-4px);
-    transition: all 0.2s ease;
+    transform: translateX(-8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .post-card:hover .post-card-arrow {

@@ -59,6 +59,8 @@ const base = import.meta.env.BASE_URL;
   .about-page {
     max-width: 700px;
     margin: 0 auto;
+    animation: fadeInUp 0.5s ease both;
+    animation-delay: 0.15s;
   }
   
   h1 {
@@ -83,7 +85,7 @@ const base = import.meta.env.BASE_URL;
     color: var(--accent);
     margin-bottom: 16px;
     padding-bottom: 6px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color-light);
   }
   
   p {

@@ -32,7 +32,9 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    animation: slideDown 0.4s ease both;
   }
   
   .header-inner {
@@ -73,7 +75,7 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: color 0.2s, background-color 0.2s;
+    transition: color 0.25s, background-color 0.25s, transform 0.2s;
     position: relative;
   }
   
@@ -103,11 +105,15 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     border: 1px solid var(--accent);
     color: var(--accent);
     border-radius: 8px;
+    transition: all 0.3s ease;
   }
 
   .resume-link:hover {
-    background: var(--accent);
+    background: var(--accent-gradient);
     color: #fff;
+    border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-glow);
   }
   
   .search-btn {
@@ -121,13 +127,14 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     border-radius: 8px;
     cursor: pointer;
     color: var(--text-muted);
-    transition: all 0.2s;
+    transition: all 0.25s ease;
   }
   
   .search-btn:hover {
     color: var(--accent);
     background-color: var(--accent-subtle);
     border-color: var(--accent);
+    transform: scale(1.05);
   }
   
   @media (max-width: 768px) {

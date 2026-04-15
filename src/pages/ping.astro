@@ -75,6 +75,8 @@ import MainLayout from '../layouts/MainLayout.astro';
   .contact-container {
     max-width: 600px;
     margin: 0 auto;
+    animation: fadeInUp 0.5s ease both;
+    animation-delay: 0.15s;
   }
 
   h1 {
@@ -113,21 +115,22 @@ import MainLayout from '../layouts/MainLayout.astro';
   input, textarea {
     display: block;
     width: 100%;
-    padding: 10px 14px;
+    padding: 12px 16px;
     background-color: var(--highlight-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-color);
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
     box-sizing: border-box;
   }
   
   input:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-light);
-    box-shadow: 0 0 0 3px var(--accent-subtle);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background-color: var(--highlight-warm);
   }
   
   .submit-btn {
@@ -145,7 +148,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   
   .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(146, 64, 14, 0.25);
+    box-shadow: 0 4px 16px var(--accent-glow);
   }
   
   .form-note {
@@ -156,7 +159,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
   .divider {
     height: 1px;
-    background: var(--border-color);
+    background: linear-gradient(to right, transparent, var(--border-color), var(--accent-glow), var(--border-color), transparent);
     margin: 40px 0;
   }
 
@@ -181,12 +184,17 @@ import MainLayout from '../layouts/MainLayout.astro';
     border: 1px solid var(--border-color);
     border-radius: 12px;
     text-decoration: none;
-    transition: all 0.25s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--highlight-bg);
     color: var(--text-color);
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.5s ease both;
   }
+
+  .contact-card:nth-child(1) { animation-delay: 0.3s; }
+  .contact-card:nth-child(2) { animation-delay: 0.4s; }
+  .contact-card:nth-child(3) { animation-delay: 0.5s; }
 
   .contact-card::before {
     content: '';
@@ -197,14 +205,15 @@ import MainLayout from '../layouts/MainLayout.astro';
     width: 3px;
     background: var(--accent-gradient);
     opacity: 0;
-    transition: opacity 0.25s;
+    transition: opacity 0.3s ease;
   }
 
   a.contact-card:hover {
     border-color: var(--accent-light);
     box-shadow: var(--card-shadow-hover);
     text-decoration: none;
-    transform: translateX(4px);
+    transform: translateX(6px);
+    background: var(--highlight-warm);
   }
 
   a.contact-card:hover::before {
@@ -215,12 +224,18 @@ import MainLayout from '../layouts/MainLayout.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 10px;
     background: var(--accent-subtle);
     color: var(--accent);
     flex-shrink: 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  a.contact-card:hover .contact-card-icon {
+    transform: scale(1.08);
+    background: var(--accent-glow);
   }
 
   .contact-card-text {
