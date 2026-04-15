@@ -39,18 +39,33 @@ import MainLayout from '../layouts/MainLayout.astro';
     
     <div class="contact-cards">
       <a href="https://www.linkedin.com/in/skdogra" target="_blank" rel="noopener" class="contact-card">
-        <span class="contact-card-label">LinkedIn</span>
-        <span class="contact-card-value">in/skdogra</span>
+        <span class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        </span>
+        <div class="contact-card-text">
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-value">in/skdogra</span>
+        </div>
       </a>
       
       <a href="mailto:skdogra11@yahoo.co.in" class="contact-card">
-        <span class="contact-card-label">Email</span>
-        <span class="contact-card-value">skdogra11@yahoo.co.in</span>
+        <span class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <div class="contact-card-text">
+          <span class="contact-card-label">Email</span>
+          <span class="contact-card-value">skdogra11@yahoo.co.in</span>
+        </div>
       </a>
 
       <div class="contact-card">
-        <span class="contact-card-label">Phone</span>
-        <span class="contact-card-value">+91-99992-30777</span>
+        <span class="contact-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </span>
+        <div class="contact-card-text">
+          <span class="contact-card-label">Phone</span>
+          <span class="contact-card-value">+91-99992-30777</span>
+        </div>
       </div>
     </div>
   </div>
@@ -66,7 +81,10 @@ import MainLayout from '../layouts/MainLayout.astro';
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--accent);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 12px;
   }
 
@@ -113,22 +131,21 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
   
   .submit-btn {
-    background-color: var(--accent);
+    background: var(--accent-gradient);
     color: #fff;
     border: none;
-    padding: 10px 24px;
+    padding: 12px 28px;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
   }
   
   .submit-btn:hover {
-    background-color: var(--accent-light);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(146, 64, 14, 0.25);
   }
   
   .form-note {
@@ -160,31 +177,66 @@ import MainLayout from '../layouts/MainLayout.astro';
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 16px;
+    padding: 18px 20px;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: all 0.25s;
     background: var(--highlight-bg);
     color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity 0.25s;
   }
 
   a.contact-card:hover {
     border-color: var(--accent-light);
     box-shadow: var(--card-shadow-hover);
     text-decoration: none;
+    transform: translateX(4px);
+  }
+
+  a.contact-card:hover::before {
+    opacity: 1;
+  }
+
+  .contact-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .contact-card-text {
+    display: flex;
+    flex-direction: column;
   }
 
   .contact-card-label {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--accent);
-    min-width: 70px;
   }
 
   .contact-card-value {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
   input:invalid, textarea:invalid {

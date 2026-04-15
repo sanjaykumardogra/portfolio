@@ -32,7 +32,7 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
   }
   
   .header-inner {
@@ -53,7 +53,10 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--accent);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.02em;
   }
   
@@ -71,6 +74,7 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
     font-size: 0.9rem;
     font-weight: 500;
     transition: color 0.2s, background-color 0.2s;
+    position: relative;
   }
   
   .nav-link:hover {
@@ -81,12 +85,29 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
   
   .nav-link.active {
     color: var(--accent);
-    background-color: var(--accent-subtle);
     font-weight: 600;
   }
 
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--accent-gradient);
+    border-radius: 1px;
+  }
+
   .resume-link {
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 8px;
+  }
+
+  .resume-link:hover {
+    background: var(--accent);
+    color: #fff;
   }
   
   .search-btn {
@@ -104,9 +125,9 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
   }
   
   .search-btn:hover {
-    color: var(--text-color);
-    background-color: var(--highlight-bg);
-    border-color: var(--text-muted);
+    color: var(--accent);
+    background-color: var(--accent-subtle);
+    border-color: var(--accent);
   }
   
   @media (max-width: 768px) {

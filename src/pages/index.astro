@@ -19,15 +19,27 @@ const recentPosts = sortedPosts.slice(0, 5);
 <MainLayout title="S K Dogra | Portfolio" description="S K Dogra — Senior Business Leader in Panels, MDF & Construction Products">
   
   <section class="hero">
+    <div class="hero-badge">Senior Business Leader</div>
     <h1>I am S K Dogra.</h1>
     <p class="hero-subtitle">
-      Senior Business Leader with <strong>30+ years</strong> of P&L-accountable experience across panels, MDF, laminates, and value-added construction products.
+      <strong>30+ years</strong> of P&L-accountable experience across panels, MDF, laminates, and value-added construction products.
     </p>
-    <p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">30+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">3000+</span>
+        <span class="stat-label">Dealer Network</span>
+      </div>
+    </div>
+    <p class="hero-body">
       I've led business expansion, turnarounds, and greenfield commercialization for India's top interior infrastructure companies — including <strong>Greenply Industries</strong>, <strong>Amul Group</strong>, and <strong>Archit Nuwood Industries</strong>.
-    </p>
-    <p>
-      My expertise spans project sales across <strong>A2G, Defence, Railways, NHAI, and Smart Cities</strong> segments, with deep knowledge of tender marketing, quality certifications (FSC, GRIHA, IGBC, CARB), and specification-driven institutional engagement.
     </p>
   </section>
   
@@ -35,22 +47,37 @@ const recentPosts = sortedPosts.slice(0, 5);
     <h2>Explore</h2>
     <div class="link-grid">
       <a href={`${base}whoami`} class="link-card">
+        <span class="link-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
         <span class="link-card-title">About</span>
         <span class="link-card-desc">Background & expertise</span>
       </a>
       <a href={`${base}blog`} class="link-card">
+        <span class="link-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </span>
         <span class="link-card-title">Insights</span>
         <span class="link-card-desc">Industry perspectives</span>
       </a>
       <a href={`${base}random`} class="link-card">
+        <span class="link-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </span>
         <span class="link-card-title">Career</span>
         <span class="link-card-desc">Timeline & key roles</span>
       </a>
       <a href={`${base}ping`} class="link-card">
+        <span class="link-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
         <span class="link-card-title">Contact</span>
         <span class="link-card-desc">Get in touch</span>
       </a>
       <a href={`${base}assets/resume/SKDogra.pdf`} target="_blank" rel="noopener noreferrer" class="link-card">
+        <span class="link-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
         <span class="link-card-title">Resume</span>
         <span class="link-card-desc">Download PDF</span>
       </a>
@@ -59,18 +86,19 @@ const recentPosts = sortedPosts.slice(0, 5);
   
   <section class="recent-posts">
     <h2>Recent Insights</h2>
-    {recentPosts.map((post) => {
+    {recentPosts.map((post, i) => {
       const { title, date } = post.data;
       const formattedDate = formatDate(date);
       
       return (
-        <article class="post-card">
-          <div class="post-card-header">
-            <a href={`${base}blog/${post.slug}`} class="post-card-title">{title}</a>
+        <a href={`${base}blog/${post.slug}`} class="post-card">
+          <div class="post-card-number">{String(i + 1).padStart(2, '0')}</div>
+          <div class="post-card-body">
+            <span class="post-card-title">{title}</span>
+            <span class="post-card-date">{formattedDate}</span>
           </div>
-          <div class="post-card-date">{formattedDate}</div>
-          <a href={`${base}blog/${post.slug}`} class="read-link">Read more &rarr;</a>
-        </article>
+          <span class="post-card-arrow">&rarr;</span>
+        </a>
       );
     })}
   </section>
@@ -78,22 +106,80 @@ const recentPosts = sortedPosts.slice(0, 5);
 
 <style>
   .hero {
-    margin-bottom: 48px;
+    margin: -40px -40px 40px;
+    padding: 48px 40px 40px;
+    background: var(--hero-bg);
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid var(--accent);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
   }
 
   h1 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     font-weight: 700;
-    color: var(--accent);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 16px;
     letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
   .hero-subtitle {
     font-size: 1.1rem;
     color: var(--text-muted);
     line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin: 28px 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .hero-body {
+    margin-bottom: 0;
+    line-height: 1.7;
+    color: var(--text-muted);
   }
 
   p {
@@ -124,19 +210,43 @@ const recentPosts = sortedPosts.slice(0, 5);
   .link-card {
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 20px;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     background: var(--highlight-bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
   .link-card:hover {
     border-color: var(--accent-light);
     box-shadow: var(--card-shadow-hover);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     text-decoration: none;
+  }
+
+  .link-card:hover::before {
+    opacity: 1;
+  }
+
+  .link-card-icon {
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
   }
 
   .link-card-title {
@@ -156,53 +266,95 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   .post-card {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
   }
 
-  .post-card:last-child {
-    border-bottom: none;
+  .post-card:hover {
+    background: var(--highlight-bg);
+    border-color: var(--border-color);
+    text-decoration: none;
+    box-shadow: var(--card-shadow);
+  }
+
+  .post-card-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.5;
+    min-width: 28px;
+  }
+
+  .post-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .post-card-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.2s;
+    line-height: 1.4;
   }
 
-  .post-card-title:hover {
+  .post-card:hover .post-card-title {
     color: var(--accent);
-    text-decoration: none;
   }
 
   .post-card-date {
     color: var(--date-color);
-    font-size: 0.85rem;
-    margin: 6px 0 8px;
+    font-size: 0.82rem;
   }
 
-  .read-link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--link-color);
-    text-decoration: none;
-    transition: color 0.2s;
+  .post-card-arrow {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s ease;
   }
 
-  .read-link:hover {
+  .post-card:hover .post-card-arrow {
+    opacity: 1;
+    transform: translateX(0);
     color: var(--accent);
-    text-decoration: none;
   }
 
   @media (max-width: 480px) {
     h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
+    }
+
+    .hero {
+      margin: -40px -40px 32px;
+      padding: 32px 24px 28px;
+    }
+
+    .hero-stats {
+      gap: 20px;
+    }
+
+    .stat-number {
+      font-size: 1.3rem;
     }
 
     .link-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .post-card-number {
+      display: none;
     }
   }
 </style>
