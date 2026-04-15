@@ -92,30 +92,59 @@ const base = import.meta.env.BASE_URL;
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 2rem;
     font-weight: 700;
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 40%, #e11d48 70%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite alternate;
     margin-bottom: 24px;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  :global(.dark-theme) h1 {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #fb7185 70%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 200% 200%;
   }
   
   .about-section {
     margin-bottom: 40px;
+    --sec-clr: var(--accent);
   }
+
+  .about-section:nth-child(2) { --sec-clr: #2563eb; }
+  .about-section:nth-child(3) { --sec-clr: #e11d48; }
+  .about-section:nth-child(4) { --sec-clr: #d97706; }
+  .about-section:nth-child(5) { --sec-clr: #7c3aed; }
+
+  :global(.dark-theme) .about-section:nth-child(2) { --sec-clr: #60a5fa; }
+  :global(.dark-theme) .about-section:nth-child(3) { --sec-clr: #fb7185; }
+  :global(.dark-theme) .about-section:nth-child(4) { --sec-clr: #fbbf24; }
+  :global(.dark-theme) .about-section:nth-child(5) { --sec-clr: #a78bfa; }
   
   h2 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--sec-clr, var(--accent));
     margin-bottom: 16px;
     padding-bottom: 6px;
-    border-bottom: 2px solid var(--border-color-light);
+    border-bottom: 2px solid color-mix(in srgb, var(--sec-clr) 25%, var(--border-color-light));
   }
   
   p {
     margin-bottom: 14px;
     line-height: 1.7;
+  }
+
+  p strong {
+    color: var(--sec-clr, var(--text-color));
   }
   
   .contact-list {
@@ -125,14 +154,32 @@ const base = import.meta.env.BASE_URL;
   
   .contact-list li {
     margin-bottom: 12px;
-    padding: 8px 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-light);
+    background: var(--highlight-bg);
+    transition: all 0.25s ease;
   }
+
+  .contact-list li:hover {
+    background: var(--highlight-warm);
+    border-color: var(--border-color);
+    transform: translateX(4px);
+  }
+
+  .contact-list li:nth-child(1) { --li-clr: #2563eb; }
+  .contact-list li:nth-child(2) { --li-clr: #7c3aed; }
+  .contact-list li:nth-child(3) { --li-clr: #d97706; }
+
+  :global(.dark-theme) .contact-list li:nth-child(1) { --li-clr: #60a5fa; }
+  :global(.dark-theme) .contact-list li:nth-child(2) { --li-clr: #a78bfa; }
+  :global(.dark-theme) .contact-list li:nth-child(3) { --li-clr: #fbbf24; }
   
   .contact-label {
     display: inline-block;
     min-width: 80px;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--li-clr, var(--text-muted));
   }
   
   a {

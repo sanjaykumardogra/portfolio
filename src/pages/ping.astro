@@ -83,11 +83,25 @@ import MainLayout from '../layouts/MainLayout.astro';
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 2rem;
     font-weight: 700;
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 40%, #e11d48 70%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite alternate;
     margin-bottom: 12px;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  :global(.dark-theme) h1 {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #fb7185 70%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 200% 200%;
   }
 
   .intro {
@@ -103,6 +117,14 @@ import MainLayout from '../layouts/MainLayout.astro';
   .form-group {
     margin-bottom: 20px;
   }
+
+  .form-group:nth-child(1) { --field-clr: #2563eb; --field-glow: rgba(37,99,235,0.12); }
+  .form-group:nth-child(2) { --field-clr: #7c3aed; --field-glow: rgba(124,58,237,0.12); }
+  .form-group:nth-child(3) { --field-clr: #e11d48; --field-glow: rgba(225,29,72,0.12); }
+
+  :global(.dark-theme) .form-group:nth-child(1) { --field-clr: #60a5fa; --field-glow: rgba(96,165,250,0.15); }
+  :global(.dark-theme) .form-group:nth-child(2) { --field-clr: #a78bfa; --field-glow: rgba(167,139,250,0.15); }
+  :global(.dark-theme) .form-group:nth-child(3) { --field-clr: #fb7185; --field-glow: rgba(251,113,133,0.15); }
 
   label {
     display: block;
@@ -128,13 +150,14 @@ import MainLayout from '../layouts/MainLayout.astro';
   
   input:focus, textarea:focus {
     outline: none;
-    border-color: var(--accent-light);
-    box-shadow: 0 0 0 3px var(--accent-glow);
+    border-color: var(--field-clr, var(--accent-light));
+    box-shadow: 0 0 0 3px var(--field-glow, var(--accent-glow));
     background-color: var(--highlight-warm);
   }
   
   .submit-btn {
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #2563eb, #7c3aed, #e11d48);
+    background-size: 200% 200%;
     color: #fff;
     border: none;
     padding: 12px 28px;
@@ -143,12 +166,14 @@ import MainLayout from '../layouts/MainLayout.astro';
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
-    transition: all 0.25s ease;
+    transition: all 0.35s ease;
+    animation: gradientShift 4s ease-in-out infinite alternate;
   }
   
   .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px var(--accent-glow);
+    box-shadow: 0 4px 20px rgba(37,99,235,0.25), 0 2px 8px rgba(124,58,237,0.15);
+    filter: brightness(1.1);
   }
   
   .form-note {
@@ -158,17 +183,28 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
 
   .divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border-color), var(--accent-glow), var(--border-color), transparent);
+    height: 2px;
+    background: linear-gradient(to right, transparent, #2563eb, #7c3aed, #e11d48, #d97706, transparent);
     margin: 40px 0;
+    border-radius: 1px;
+    opacity: 0.4;
   }
 
   h2 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--accent);
+    background: linear-gradient(135deg, #2563eb, #7c3aed, #e11d48);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
+  }
+
+  :global(.dark-theme) h2 {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #fb7185);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   .contact-cards {
@@ -192,9 +228,31 @@ import MainLayout from '../layouts/MainLayout.astro';
     animation: fadeInUp 0.5s ease both;
   }
 
-  .contact-card:nth-child(1) { animation-delay: 0.3s; }
-  .contact-card:nth-child(2) { animation-delay: 0.4s; }
-  .contact-card:nth-child(3) { animation-delay: 0.5s; }
+  .contact-card:nth-child(1) {
+    animation-delay: 0.3s;
+    --cc-clr: #2563eb;
+    --cc-clr-subtle: rgba(37, 99, 235, 0.08);
+    --cc-clr-glow: rgba(37, 99, 235, 0.15);
+    --cc-clr-shadow: rgba(37, 99, 235, 0.12);
+  }
+  .contact-card:nth-child(2) {
+    animation-delay: 0.4s;
+    --cc-clr: #e11d48;
+    --cc-clr-subtle: rgba(225, 29, 72, 0.08);
+    --cc-clr-glow: rgba(225, 29, 72, 0.15);
+    --cc-clr-shadow: rgba(225, 29, 72, 0.12);
+  }
+  .contact-card:nth-child(3) {
+    animation-delay: 0.5s;
+    --cc-clr: #d97706;
+    --cc-clr-subtle: rgba(217, 119, 6, 0.08);
+    --cc-clr-glow: rgba(217, 119, 6, 0.15);
+    --cc-clr-shadow: rgba(217, 119, 6, 0.12);
+  }
+
+  :global(.dark-theme) .contact-card:nth-child(1) { --cc-clr: #60a5fa; --cc-clr-subtle: rgba(96,165,250,0.1); --cc-clr-glow: rgba(96,165,250,0.18); --cc-clr-shadow: rgba(96,165,250,0.1); }
+  :global(.dark-theme) .contact-card:nth-child(2) { --cc-clr: #fb7185; --cc-clr-subtle: rgba(251,113,133,0.1); --cc-clr-glow: rgba(251,113,133,0.18); --cc-clr-shadow: rgba(251,113,133,0.1); }
+  :global(.dark-theme) .contact-card:nth-child(3) { --cc-clr: #fbbf24; --cc-clr-subtle: rgba(251,191,36,0.1); --cc-clr-glow: rgba(251,191,36,0.18); --cc-clr-shadow: rgba(251,191,36,0.1); }
 
   .contact-card::before {
     content: '';
@@ -203,17 +261,17 @@ import MainLayout from '../layouts/MainLayout.astro';
     left: 0;
     bottom: 0;
     width: 3px;
-    background: var(--accent-gradient);
+    background: var(--cc-clr, var(--accent));
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   a.contact-card:hover {
-    border-color: var(--accent-light);
-    box-shadow: var(--card-shadow-hover);
+    border-color: color-mix(in srgb, var(--cc-clr) 30%, var(--border-color));
+    box-shadow: 0 12px 32px var(--cc-clr-shadow, var(--accent-glow)), 0 4px 12px rgba(0,0,0,0.04);
     text-decoration: none;
     transform: translateX(6px);
-    background: var(--highlight-warm);
+    background: var(--cc-clr-subtle, var(--highlight-warm));
   }
 
   a.contact-card:hover::before {
@@ -227,15 +285,15 @@ import MainLayout from '../layouts/MainLayout.astro';
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    background: var(--accent-subtle);
-    color: var(--accent);
+    background: var(--cc-clr-subtle, var(--accent-subtle));
+    color: var(--cc-clr, var(--accent));
     flex-shrink: 0;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
   }
 
   a.contact-card:hover .contact-card-icon {
     transform: scale(1.08);
-    background: var(--accent-glow);
+    background: var(--cc-clr-glow, var(--accent-glow));
   }
 
   .contact-card-text {
@@ -246,7 +304,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   .contact-card-label {
     font-weight: 600;
     font-size: 0.85rem;
-    color: var(--accent);
+    color: var(--cc-clr, var(--accent));
   }
 
   .contact-card-value {
