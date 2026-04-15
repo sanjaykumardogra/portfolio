@@ -684,14 +684,6 @@ import MainLayout from '../layouts/MainLayout.astro';
       [25,72],[26,71],[27,70],[28,70.5],[29,72],[30,74],[31,74.5],[32,75],[33,75],[35,74],
     ];
 
-    const DOT_COLORS = [
-      '#e8a87c','#d4a373','#c9956a','#c08a60','#b87f57',
-      '#aa7b6b','#9c7a7f','#8e7a93','#7f7ba7','#717dbb',
-      '#6b83b8','#6a8db0','#6997a8','#68a1a0','#67ab98',
-      '#6aab8c','#72a87e','#7ca670','#86a463','#91a155',
-      '#9e9e4c','#aa9c4a','#b29a48','#ba9846','#c29644',
-    ];
-
     // center globe view on India (~20°N, 78°E)
     const CENTER_LAT = 20 * DEG;
     const CENTER_LNG = 78 * DEG;
@@ -832,67 +824,73 @@ import MainLayout from '../layouts/MainLayout.astro';
       return smoothCache;
     }
 
-    function drawLandmasses(colors) {
+    // per-continent tint colors [fill hex, stroke hex]
+    const CONTINENT_COLORS = [
+      ['#5b9a8b','#5b9a8b'], // Africa – sage green
+      ['#7b8db5','#7b8db5'], // Europe – slate blue
+      ['#b5936b','#b5936b'], // Asia – warm sand
+      ['#6ba38a','#6ba38a'], // N. America – forest teal
+      ['#a3856b','#a3856b'], // S. America – terracotta
+      ['#8b7bb5','#8b7bb5'], // Australia – soft purple
+      ['#b5a36b','#b5a36b'], // Arabian Peninsula – desert gold
+      ['#8ba5b5','#8ba5b5'], // Japan – steel blue
+      ['#6b8b7a','#6b8b7a'], // UK – moss green
+      ['#8baab5','#8baab5'], // Greenland – ice blue
+      ['#7bb58b','#7bb58b'], // Indonesia – tropical green
+      ['#6b9ab5','#6b9ab5'], // New Zealand – ocean blue
+      ['#9ab56b','#9ab56b'], // Madagascar – lime
+    ];
+
+    function drawLandmasses() {
       const r = R();
       const { land } = getSmoothedLand();
-      for (const smooth of land) {
+      const cx = W() / 2;
+      const cy = H() / 2;
+      const gr = R();
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, gr + 1, 0, Math.PI * 2);
+      ctx.clip();
+
+      for (let li = 0; li < land.length; li++) {
+        const smooth = land[li];
         const segs = [];
         let frontCount = 0;
         for (const [lat, lng] of smooth) {
           const p3 = latLngTo3D(lat, lng, r);
           const pr = rotatePoint(p3, rotX, rotY);
           const pp = project(pr);
-          const front = pr.z < 0;
-          if (front) frontCount++;
-          segs.push({ x: pp.x, y: pp.y, front });
+          if (pr.z < 0) frontCount++;
+          segs.push({ x: pp.x, y: pp.y });
         }
 
-        const mostlyFront = frontCount > segs.length * 0.5;
+        const ratio = frontCount / segs.length;
+        const cc = CONTINENT_COLORS[li] || CONTINENT_COLORS[0];
 
-        // light fill for front-facing landmasses
-        if (mostlyFront) {
-          ctx.beginPath();
-          segs.forEach((s, i) => i === 0 ? ctx.moveTo(s.x, s.y) : ctx.lineTo(s.x, s.y));
-          ctx.closePath();
-          ctx.fillStyle = colorAlpha(colors.accent, 0.045);
+        ctx.beginPath();
+        segs.forEach((s, i) => i === 0 ? ctx.moveTo(s.x, s.y) : ctx.lineTo(s.x, s.y));
+        ctx.closePath();
+
+        if (ratio > 0.25) {
+          ctx.fillStyle = colorAlpha(cc[0], 0.08);
           ctx.fill();
         }
 
-        // back-face stroke
-        ctx.beginPath();
-        let drawing = false;
-        for (let i = 0; i < segs.length; i++) {
-          if (!segs[i].front) {
-            if (!drawing) { ctx.moveTo(segs[i].x, segs[i].y); drawing = true; }
-            else ctx.lineTo(segs[i].x, segs[i].y);
-          } else if (drawing) {
-            drawing = false;
-          }
-        }
-        ctx.strokeStyle = colorAlpha(colors.accent, 0.08);
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
-
-        // front-face stroke
-        ctx.beginPath();
-        drawing = false;
-        for (let i = 0; i < segs.length; i++) {
-          if (segs[i].front) {
-            if (!drawing) { ctx.moveTo(segs[i].x, segs[i].y); drawing = true; }
-            else ctx.lineTo(segs[i].x, segs[i].y);
-          } else if (drawing) {
-            drawing = false;
-          }
-        }
-        ctx.strokeStyle = colorAlpha(colors.accent, 0.45);
-        ctx.lineWidth = 0.9;
+        const alpha = ratio > 0.5 ? 0.4 : ratio > 0.15 ? 0.14 : 0.06;
+        ctx.strokeStyle = colorAlpha(cc[1], alpha);
+        ctx.lineWidth = ratio > 0.5 ? 0.8 : 0.5;
         ctx.stroke();
       }
+
+      ctx.restore();
     }
 
     function drawIndia(colors) {
       const r = R();
       const { india } = getSmoothedLand();
+      const cx = W() / 2;
+      const cy = H() / 2;
       const pts = [];
       let avgZ = 0;
       for (const [lat, lng] of india) {
@@ -904,21 +902,28 @@ import MainLayout from '../layouts/MainLayout.astro';
       }
       avgZ /= pts.length;
 
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R() + 1, 0, Math.PI * 2);
+      ctx.clip();
+
       ctx.beginPath();
       pts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
       ctx.closePath();
 
       if (avgZ < 0) {
-        ctx.fillStyle = colorAlpha(colors.accentWarm, 0.18);
+        ctx.fillStyle = colorAlpha(colors.accentWarm, 0.15);
         ctx.fill();
-        ctx.strokeStyle = colorAlpha(colors.accentWarm, 0.8);
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = colorAlpha(colors.accentWarm, 0.7);
+        ctx.lineWidth = 1.2;
         ctx.stroke();
       } else {
-        ctx.strokeStyle = colorAlpha(colors.accentWarm, 0.06);
-        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = colorAlpha(colors.accentWarm, 0.05);
+        ctx.lineWidth = 0.4;
         ctx.stroke();
       }
+
+      ctx.restore();
     }
 
     function greatCircleArc(c1, c2, r, steps) {
@@ -961,6 +966,25 @@ import MainLayout from '../layouts/MainLayout.astro';
       }
     }
 
+    // Asia continent base color – light and dark ends
+    const ASIA_LIGHT = '#d4c4a8';
+    const ASIA_DARK  = '#7a6542';
+
+    // precompute longitude range for left-to-right gradient
+    const minLng = Math.min(...CITIES.map(c => c.lng));
+    const maxLng = Math.max(...CITIES.map(c => c.lng));
+
+    function cityColor(lng) {
+      const t = (lng - minLng) / (maxLng - minLng);
+      const a = hexToRgb(ASIA_LIGHT);
+      const b = hexToRgb(ASIA_DARK);
+      return {
+        r: Math.round(a.r + (b.r - a.r) * t),
+        g: Math.round(a.g + (b.g - a.g) * t),
+        b: Math.round(a.b + (b.b - a.b) * t),
+      };
+    }
+
     function drawCities(colors) {
       const r = R();
       const projected = [];
@@ -976,23 +1000,24 @@ import MainLayout from '../layouts/MainLayout.astro';
 
       for (const p of projected) {
         if (p.frontFace) continue;
-        const dotColor = DOT_COLORS[p.idx % DOT_COLORS.length];
+        const cc = cityColor(CITIES[p.idx].lng);
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = colorAlpha(dotColor, 0.1);
+        ctx.fillStyle = `rgba(${cc.r},${cc.g},${cc.b},0.1)`;
         ctx.fill();
       }
 
       for (const p of projected) {
         if (!p.frontFace) continue;
         const isDelhi = p.idx === 0;
-        const dotR = isDelhi ? 3.5 : 2.5;
-        const dotColor = DOT_COLORS[p.idx % DOT_COLORS.length];
+        const dotR = isDelhi ? 3 : 2;
+        const cc = cityColor(CITIES[p.idx].lng);
+        const rgb = `${cc.r},${cc.g},${cc.b}`;
 
         if (isDelhi) {
           const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, dotR * 3);
-          grd.addColorStop(0, colorAlpha(colors.accentWarm, 0.3));
-          grd.addColorStop(1, colorAlpha(colors.accentWarm, 0));
+          grd.addColorStop(0, `rgba(${rgb},0.3)`);
+          grd.addColorStop(1, `rgba(${rgb},0)`);
           ctx.beginPath();
           ctx.arc(p.x, p.y, dotR * 3, 0, Math.PI * 2);
           ctx.fillStyle = grd;
@@ -1001,7 +1026,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, dotR, 0, Math.PI * 2);
-        ctx.fillStyle = colorAlpha(dotColor, 0.85);
+        ctx.fillStyle = `rgba(${rgb},0.8)`;
         ctx.fill();
       }
     }
@@ -1033,7 +1058,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
       drawOutlineCircle(colors);
       drawWireframe(colors);
-      drawLandmasses(colors);
+      drawLandmasses();
       drawIndia(colors);
       drawArcs(colors);
       drawCities(colors);

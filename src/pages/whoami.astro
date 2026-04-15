@@ -154,32 +154,14 @@ const base = import.meta.env.BASE_URL;
   
   .contact-list li {
     margin-bottom: 12px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color-light);
-    background: var(--highlight-bg);
-    transition: all 0.25s ease;
+    padding: 8px 0;
   }
-
-  .contact-list li:hover {
-    background: var(--highlight-warm);
-    border-color: var(--border-color);
-    transform: translateX(4px);
-  }
-
-  .contact-list li:nth-child(1) { --li-clr: #2563eb; }
-  .contact-list li:nth-child(2) { --li-clr: #7c3aed; }
-  .contact-list li:nth-child(3) { --li-clr: #d97706; }
-
-  :global(.dark-theme) .contact-list li:nth-child(1) { --li-clr: #60a5fa; }
-  :global(.dark-theme) .contact-list li:nth-child(2) { --li-clr: #a78bfa; }
-  :global(.dark-theme) .contact-list li:nth-child(3) { --li-clr: #fbbf24; }
   
   .contact-label {
     display: inline-block;
     min-width: 80px;
     font-weight: 600;
-    color: var(--li-clr, var(--text-muted));
+    color: var(--text-muted);
   }
   
   a {
