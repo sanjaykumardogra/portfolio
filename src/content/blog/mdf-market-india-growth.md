@@ -4,7 +4,7 @@ date: 2025-03-15
 description: "From niche import to mainstream staple — how MDF became the backbone of India's interior products industry and what's driving the next wave of growth."
 ---
 
-When I started working with MDF in the early 1990s at Nuchem Limited, it was a niche product that most of the Indian market didn't understand. Architects specified plywood by default. Contractors had never worked with it. The distribution network simply didn't exist.
+When I started working with MDF in the early 1990s at Nuchem Limited, it was a niche product that most of the Indian market didn't understand. Architects specified plywood by default. Contractors/Carpenters had never worked with it. The distribution network simply hardly existed.
 
 Three decades later, MDF has become the backbone of India's interior infrastructure — from modular kitchens and office furniture to retail fixtures and institutional projects. I've had the privilege of being part of this transformation at every stage.
 
@@ -16,7 +16,7 @@ At Nuchem, we were essentially evangelists. The product existed, but the market 
 - **Educate architects, contractors, and OEMs** on the material's properties — dimensional stability, machinability, surface finish quality
 - **Build the stockist and convertor network** — finding partners willing to stock a product with uncertain demand
 
-The breakthrough came when we started getting MDF specified in government tenders. Once it appeared in PWD and CPWD specifications, the institutional pipeline opened up.
+Consequent ban of wood in government works, the breakthrough came when we started getting MDF specified in government tenders. Once it appeared in PWD and CPWD specifications, the institutional pipeline opened up.
 
 ## Scaling at Greenply: India's Largest Player
 
