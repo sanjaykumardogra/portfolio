@@ -1,8 +1,10 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 
 <div 
   id="newsletter-modal" 
+  data-base={base}
   x-data="{ 
     open: false,
     submitted: false,
@@ -15,7 +17,8 @@
         return;
       }
 
-      if (window.location.pathname.startsWith('/blog/')) {
+      const base = this.$el.dataset.base || '/';
+      if (window.location.pathname.startsWith(base + 'blog/')) {
         setTimeout(() => {
            this.open = true;
         }, 3000);

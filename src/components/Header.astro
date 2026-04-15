@@ -1,6 +1,7 @@
 ---
 const base = import.meta.env.BASE_URL;
-const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
+const raw = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
+const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
 ---
 
 <header class="header">
