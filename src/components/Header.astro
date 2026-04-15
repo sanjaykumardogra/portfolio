@@ -11,7 +11,8 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     </a>
     <nav class="nav">
       <a href={base} class={`nav-link ${routePath === '/' ? 'active' : ''}`}>Home</a>
-      <a href={`${base}blog`} class={`nav-link ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a>
+      <!-- TODO: Uncomment when blog/insights content is ready -->
+      <!-- <a href={`${base}blog`} class={`nav-link ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a> -->
       <a href={`${base}random`} class={`nav-link ${routePath === '/random' ? 'active' : ''}`}>Career</a>
       <a href={`${base}whoami`} class={`nav-link ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
       <a href={`${base}ping`} class={`nav-link ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
