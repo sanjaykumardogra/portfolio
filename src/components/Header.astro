@@ -10,15 +10,15 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
       <span class="logo-name">SK Dogra</span>
     </a>
     <nav class="nav">
-      <a href={base} class={`nav-link ${routePath === '/' ? 'active' : ''}`}>Home</a>
+      <a href={base} class={`nav-link magnetic ${routePath === '/' ? 'active' : ''}`}>Home</a>
       <!-- TODO: Uncomment when blog/insights content is ready -->
-      <!-- <a href={`${base}blog`} class={`nav-link ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a> -->
-      <a href={`${base}random`} class={`nav-link ${routePath === '/random' ? 'active' : ''}`}>Career</a>
-      <a href={`${base}whoami`} class={`nav-link ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
-      <a href={`${base}ping`} class={`nav-link ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
-      <a href={`${base}assets/resume/SKDogra.pdf`} target="_blank" rel="noopener noreferrer" class="nav-link resume-link">Resume</a>
+      <!-- <a href={`${base}blog`} class={`nav-link magnetic ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a> -->
+      <a href={`${base}random`} class={`nav-link magnetic ${routePath === '/random' ? 'active' : ''}`}>Career</a>
+      <a href={`${base}whoami`} class={`nav-link magnetic ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
+      <a href={`${base}ping`} class={`nav-link magnetic ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
+      <a href={`${base}assets/resume/SKDogra.pdf`} target="_blank" rel="noopener noreferrer" class="nav-link resume-link magnetic">Resume</a>
     </nav>
-    <button id="search-button" class="search-btn" aria-label="Search">
+    <button id="search-button" class="search-btn magnetic" aria-label="Search">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>

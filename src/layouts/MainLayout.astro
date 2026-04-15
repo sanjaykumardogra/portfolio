@@ -34,11 +34,11 @@ const base = import.meta.env.BASE_URL;
       <div class="footer-inner">
         <span class="footer-name">SK Dogra</span>
         <nav class="footer-links">
-          <a href="https://linkedin.com/in/skdogra" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://linkedin.com/in/skdogra" target="_blank" rel="noopener noreferrer" class="magnetic">LinkedIn</a>
           <span class="footer-dot"></span>
-          <a href="mailto:skdogra11@yahoo.co.in">Email</a>
+          <a href="mailto:skdogra11@yahoo.co.in" class="magnetic">Email</a>
           <span class="footer-dot"></span>
-          <a href="tel:+919999230777">+91-99992-30777</a>
+          <a href="tel:+919999230777" class="magnetic">+91-99992-30777</a>
         </nav>
         <span class="footer-copy">&copy; 2025 SK Dogra</span>
       </div>
@@ -49,6 +49,47 @@ const base = import.meta.env.BASE_URL;
     <NewsletterModal />
     
     <script is:inline src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script>
+      if (window.matchMedia('(pointer: fine)').matches) {
+        const STRENGTH = 6;
+        const RADIUS = 80;
+
+        function initMagnetic() {
+          document.querySelectorAll('.magnetic').forEach(el => {
+            if (el._magneticInit) return;
+            el._magneticInit = true;
+            el.style.transition = 'transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+            el.addEventListener('mousemove', (e) => {
+              const rect = el.getBoundingClientRect();
+              const cx = rect.left + rect.width / 2;
+              const cy = rect.top + rect.height / 2;
+              const dx = e.clientX - cx;
+              const dy = e.clientY - cy;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              const maxDist = Math.max(rect.width, rect.height) / 2 + RADIUS;
+
+              if (dist < maxDist) {
+                const pull = 1 - (dist / maxDist);
+                const tx = dx * pull * (STRENGTH / maxDist) * 8;
+                const ty = dy * pull * (STRENGTH / maxDist) * 8;
+                el.style.transform = `translate(${tx}px, ${ty}px)`;
+              }
+            });
+
+            el.addEventListener('mouseleave', () => {
+              el.style.transform = 'translate(0, 0)';
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMagnetic);
+        } else {
+          initMagnetic();
+        }
+      }
+    </script>
   </body>
 </html>
 
