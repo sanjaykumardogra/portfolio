@@ -170,9 +170,9 @@ const recentPosts = sortedPosts.slice(0, 5);
     --aurora-y2: 80%;
     --aurora-x3: 85%;
     --aurora-y3: 30%;
-    --aurora-c1: rgba(15, 118, 110, 0.18);
-    --aurora-c2: rgba(20, 184, 166, 0.12);
-    --aurora-c3: rgba(217, 119, 6, 0.08);
+    --aurora-c1: rgba(37, 99, 235, 0.16);
+    --aurora-c2: rgba(225, 29, 72, 0.10);
+    --aurora-c3: rgba(124, 58, 237, 0.10);
     animation:
       fadeIn 2s ease 0.4s forwards,
       auroraShift1 10s ease-in-out 1s infinite alternate,
@@ -181,9 +181,21 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   :global(.dark-theme) .hero::before {
-    --aurora-c1: rgba(107, 179, 166, 0.2);
-    --aurora-c2: rgba(84, 158, 146, 0.15);
-    --aurora-c3: rgba(212, 165, 68, 0.1);
+    --aurora-c1: rgba(96, 165, 250, 0.18);
+    --aurora-c2: rgba(251, 113, 133, 0.13);
+    --aurora-c3: rgba(167, 139, 250, 0.12);
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  :global(.dark-theme) h1 {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #fb7185 70%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 200% 200%;
   }
 
   @keyframes auroraShift1 {
@@ -233,9 +245,12 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   .hero-badge-primary {
     padding: 6px 14px 6px 16px;
-    color: var(--accent);
-    background: var(--accent-subtle);
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     border-right: 1px solid var(--border-color);
+    font-weight: 700;
   }
 
   .hero-badge-sep {
@@ -253,15 +268,15 @@ const recentPosts = sortedPosts.slice(0, 5);
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.2rem;
     font-weight: 700;
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 40%, #e11d48 70%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
     margin-bottom: 16px;
     letter-spacing: -0.03em;
     line-height: 1.1;
-    animation: fadeInUp 0.6s ease both;
-    animation-delay: 0.3s;
+    animation: fadeInUp 0.6s ease 0.3s both, gradientShift 6s ease-in-out 1s infinite alternate;
     position: relative;
     z-index: 1;
   }
@@ -291,6 +306,10 @@ const recentPosts = sortedPosts.slice(0, 5);
     animation-delay: 0.5s;
     position: relative;
     z-index: 1;
+    background-image: linear-gradient(var(--highlight-bg), var(--highlight-bg)), linear-gradient(90deg, rgba(37,99,235,0.2), rgba(225,29,72,0.2), rgba(217,119,6,0.2));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border: 1px solid transparent;
   }
 
   .stat {
@@ -304,7 +323,7 @@ const recentPosts = sortedPosts.slice(0, 5);
   .stat-divider {
     width: 1px;
     height: 40px;
-    background: var(--border-color);
+    background: linear-gradient(180deg, transparent, var(--border-color), transparent);
     flex-shrink: 0;
   }
 
@@ -333,6 +352,20 @@ const recentPosts = sortedPosts.slice(0, 5);
   .stat-plus {
     color: var(--accent-warm);
   }
+
+  .hero-stats > .stat:nth-child(1) .stat-number { color: #2563eb; }
+  .hero-stats > .stat:nth-child(1) .stat-plus { color: #60a5fa; }
+  .hero-stats > .stat:nth-child(3) .stat-number { color: #e11d48; }
+  .hero-stats > .stat:nth-child(3) .stat-plus { color: #fb7185; }
+  .hero-stats > .stat:nth-child(5) .stat-number { color: #d97706; }
+  .hero-stats > .stat:nth-child(5) .stat-plus { color: #f59e0b; }
+
+  :global(.dark-theme) .hero-stats > .stat:nth-child(1) .stat-number { color: #60a5fa; }
+  :global(.dark-theme) .hero-stats > .stat:nth-child(1) .stat-plus { color: #93c5fd; }
+  :global(.dark-theme) .hero-stats > .stat:nth-child(3) .stat-number { color: #fb7185; }
+  :global(.dark-theme) .hero-stats > .stat:nth-child(3) .stat-plus { color: #fda4af; }
+  :global(.dark-theme) .hero-stats > .stat:nth-child(5) .stat-number { color: #fbbf24; }
+  :global(.dark-theme) .hero-stats > .stat:nth-child(5) .stat-plus { color: #fcd34d; }
 
   .stat-label {
     font-size: 0.7rem;
@@ -382,7 +415,7 @@ const recentPosts = sortedPosts.slice(0, 5);
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+    background: linear-gradient(90deg, transparent, var(--card-clr-glow, var(--accent-glow)), transparent);
     transition: left 0.5s ease;
     pointer-events: none;
   }
@@ -391,32 +424,108 @@ const recentPosts = sortedPosts.slice(0, 5);
     left: 120%;
   }
 
-  .link-card:nth-child(1) { animation-delay: 0.3s; }
-  .link-card:nth-child(2) { animation-delay: 0.38s; }
-  .link-card:nth-child(3) { animation-delay: 0.46s; }
-  .link-card:nth-child(4) { animation-delay: 0.54s; }
+  .link-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: var(--card-clr, var(--accent));
+    border-radius: 0 0 2px 2px;
+    opacity: 0.45;
+    transition: opacity 0.3s ease, left 0.3s ease, right 0.3s ease;
+  }
+
+  .link-card:hover::after {
+    opacity: 0.9;
+    left: 0;
+    right: 0;
+  }
+
+  .link-card:nth-child(1) {
+    animation-delay: 0.3s;
+    --card-clr: #2563eb;
+    --card-clr-subtle: rgba(37, 99, 235, 0.08);
+    --card-clr-glow: rgba(37, 99, 235, 0.18);
+    --card-clr-warm: rgba(37, 99, 235, 0.05);
+    --card-clr-shadow: rgba(37, 99, 235, 0.14);
+  }
+  .link-card:nth-child(2) {
+    animation-delay: 0.38s;
+    --card-clr: #e11d48;
+    --card-clr-subtle: rgba(225, 29, 72, 0.08);
+    --card-clr-glow: rgba(225, 29, 72, 0.18);
+    --card-clr-warm: rgba(225, 29, 72, 0.05);
+    --card-clr-shadow: rgba(225, 29, 72, 0.14);
+  }
+  .link-card:nth-child(3) {
+    animation-delay: 0.46s;
+    --card-clr: #d97706;
+    --card-clr-subtle: rgba(217, 119, 6, 0.08);
+    --card-clr-glow: rgba(217, 119, 6, 0.18);
+    --card-clr-warm: rgba(217, 119, 6, 0.05);
+    --card-clr-shadow: rgba(217, 119, 6, 0.14);
+  }
+  .link-card:nth-child(4) {
+    animation-delay: 0.54s;
+    --card-clr: #7c3aed;
+    --card-clr-subtle: rgba(124, 58, 237, 0.08);
+    --card-clr-glow: rgba(124, 58, 237, 0.18);
+    --card-clr-warm: rgba(124, 58, 237, 0.05);
+    --card-clr-shadow: rgba(124, 58, 237, 0.14);
+  }
+
+  :global(.dark-theme) .link-card:nth-child(1) {
+    --card-clr: #60a5fa;
+    --card-clr-subtle: rgba(96, 165, 250, 0.1);
+    --card-clr-glow: rgba(96, 165, 250, 0.2);
+    --card-clr-warm: rgba(96, 165, 250, 0.06);
+    --card-clr-shadow: rgba(96, 165, 250, 0.12);
+  }
+  :global(.dark-theme) .link-card:nth-child(2) {
+    --card-clr: #fb7185;
+    --card-clr-subtle: rgba(251, 113, 133, 0.1);
+    --card-clr-glow: rgba(251, 113, 133, 0.2);
+    --card-clr-warm: rgba(251, 113, 133, 0.06);
+    --card-clr-shadow: rgba(251, 113, 133, 0.12);
+  }
+  :global(.dark-theme) .link-card:nth-child(3) {
+    --card-clr: #fbbf24;
+    --card-clr-subtle: rgba(251, 191, 36, 0.1);
+    --card-clr-glow: rgba(251, 191, 36, 0.2);
+    --card-clr-warm: rgba(251, 191, 36, 0.06);
+    --card-clr-shadow: rgba(251, 191, 36, 0.12);
+  }
+  :global(.dark-theme) .link-card:nth-child(4) {
+    --card-clr: #a78bfa;
+    --card-clr-subtle: rgba(167, 139, 250, 0.1);
+    --card-clr-glow: rgba(167, 139, 250, 0.2);
+    --card-clr-warm: rgba(167, 139, 250, 0.06);
+    --card-clr-shadow: rgba(167, 139, 250, 0.12);
+  }
 
   .link-card:hover {
-    background: var(--highlight-warm);
+    background: var(--card-clr-warm, var(--highlight-warm));
     text-decoration: none;
-    border-color: var(--border-color);
-    box-shadow: var(--card-shadow-hover);
+    border-color: color-mix(in srgb, var(--card-clr) 30%, var(--border-color));
+    box-shadow: 0 12px 32px var(--card-clr-shadow, rgba(0,0,0,0.06)), 0 4px 12px rgba(0, 0, 0, 0.04);
     transform: translateY(-2px);
   }
 
   .link-card-resume {
-    border: 2px solid var(--accent);
-    background: var(--accent-subtle);
-    box-shadow: 0 2px 12px var(--accent-glow);
+    border: 2px solid var(--card-clr);
+    background: var(--card-clr-subtle);
+    box-shadow: 0 2px 12px var(--card-clr-shadow);
   }
 
   .link-card-resume .link-card-icon {
-    background: var(--accent);
+    background: var(--card-clr);
     color: #fff;
   }
 
   .link-card-resume .link-card-title {
-    color: var(--accent);
+    color: var(--card-clr);
     font-weight: 700;
   }
 
@@ -425,14 +534,14 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   .link-card-resume .link-card-arrow {
-    color: var(--accent);
+    color: var(--card-clr);
   }
 
   .link-card-resume:hover {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--card-clr);
+    border-color: var(--card-clr);
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px var(--accent-glow), 0 2px 8px var(--accent-glow);
+    box-shadow: 0 8px 24px var(--card-clr-shadow), 0 2px 8px var(--card-clr-shadow);
   }
 
   .link-card-resume:hover .link-card-title,
@@ -453,14 +562,14 @@ const recentPosts = sortedPosts.slice(0, 5);
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--accent-subtle);
-    color: var(--accent);
+    background: var(--card-clr-subtle, var(--accent-subtle));
+    color: var(--card-clr, var(--accent));
     flex-shrink: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .link-card:hover .link-card-icon {
-    background: var(--accent-glow);
+    background: var(--card-clr-glow, var(--accent-glow));
     transform: scale(1.08);
   }
 
@@ -479,7 +588,7 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   .link-card:hover .link-card-title {
-    color: var(--accent);
+    color: var(--card-clr, var(--accent));
   }
 
   .link-card-desc {
@@ -502,7 +611,7 @@ const recentPosts = sortedPosts.slice(0, 5);
   .link-card:hover .link-card-arrow {
     opacity: 1;
     transform: translate(2px, -2px);
-    color: var(--accent);
+    color: var(--card-clr, var(--accent));
   }
 
   .recent-posts {
@@ -645,6 +754,7 @@ const recentPosts = sortedPosts.slice(0, 5);
 
 <script>
   function runSlotMachine() {
+    const statSfxColors = ['#60a5fa', '#fb7185', '#f59e0b'];
     document.querySelectorAll('.stat-number[data-slot]').forEach((el, idx) => {
       const target = el.dataset.slot;
       const suffix = el.dataset.suffix || '';
@@ -715,7 +825,7 @@ const recentPosts = sortedPosts.slice(0, 5);
       if (sfxStr) {
         const sfx = document.createElement('span');
         sfx.textContent = sfxStr;
-        sfx.style.color = 'var(--accent-warm)';
+        sfx.style.color = statSfxColors[idx] || 'var(--accent-warm)';
         container.appendChild(sfx);
       }
 
@@ -772,6 +882,14 @@ const recentPosts = sortedPosts.slice(0, 5);
     const COUNT = 45;
     const particles = [];
 
+    const sparkleColors = [
+      { light: '37,99,235',   dark: '96,165,250'  },
+      { light: '225,29,72',   dark: '251,113,133'  },
+      { light: '217,119,6',   dark: '251,191,36'   },
+      { light: '124,58,237',  dark: '167,139,250'  },
+      { light: '15,118,110',  dark: '107,179,166'  },
+    ];
+
     for (let i = 0; i < COUNT; i++) {
       particles.push({
         x: Math.random(),
@@ -781,7 +899,7 @@ const recentPosts = sortedPosts.slice(0, 5);
         vy: (Math.random() - 0.5) * 0.15,
         phase: Math.random() * Math.PI * 2,
         freq: 0.5 + Math.random() * 1.5,
-        warm: Math.random() < 0.2,
+        colorIdx: Math.floor(Math.random() * sparkleColors.length),
       });
     }
 
@@ -799,9 +917,6 @@ const recentPosts = sortedPosts.slice(0, 5);
 
       ctx.clearRect(0, 0, w, h);
 
-      const tealRGB = dark ? '107,179,166' : '15,118,110';
-      const warmRGB = dark ? '212,165,68' : '217,119,6';
-
       for (const p of particles) {
         p.x += p.vx / w;
         p.y += p.vy / h;
@@ -814,7 +929,8 @@ const recentPosts = sortedPosts.slice(0, 5);
         const pulse = (Math.sin(t * p.freq + p.phase) + 1) / 2;
         const alpha = 0.15 + pulse * (dark ? 0.55 : 0.4);
         const radius = p.r * (0.8 + pulse * 0.4);
-        const rgb = p.warm ? warmRGB : tealRGB;
+        const sc = sparkleColors[p.colorIdx];
+        const rgb = dark ? sc.dark : sc.light;
 
         const px = p.x * w;
         const py = p.y * h;
