@@ -1,189 +1,198 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import CommandPrompt from '../components/CommandPrompt.astro';
 ---
 
-<MainLayout title="Ping | S K Dogra" description="Get in touch with S K Dogra">
+<MainLayout title="Contact | S K Dogra" description="Get in touch with S K Dogra">
   
-  <div class="ping-container">
-    <CommandPrompt command="ping --help" />
+  <div class="contact-container">
     
-    <div class="terminal-output">
-      <p>
-        Usage: ping [options] target
-      </p>
-      <p>
-        Send a message to get in touch. I'm always interested in consulting opportunities,
-        business partnerships, or conversations about the panels and construction materials industry.
-      </p>
-    </div>
+    <h1>Get in Touch</h1>
+    <p class="intro">
+      I'm always interested in consulting opportunities, business partnerships, or conversations about the panels and construction materials industry.
+    </p>
     
-    <!-- Method 1: Google Forms with page redirect (most reliable) -->
     <form class="contact-form" id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSd5sxqAlw6HBZtBepw-uc1yWvsHP1gGWpaKMRXg9z5xSH5-TQ/formResponse" method="POST">
       <div class="form-group">
-        <CommandPrompt command="echo $NAME" />
+        <label for="name">Name</label>
         <input type="text" id="name" name="entry.1911722558" placeholder="Your Name" required>
       </div>
       
       <div class="form-group">
-        <CommandPrompt command="echo $EMAIL" />
+        <label for="email">Email</label>
         <input type="email" id="email" name="entry.45717485" placeholder="your@email.com" required>
       </div>
       
       <div class="form-group">
-        <CommandPrompt command="echo $MESSAGE | cat" />
-        <textarea id="message" name="entry.1680281214" rows="6" placeholder="Type your message here..." required></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="entry.1680281214" rows="6" placeholder="How can I help you?" required></textarea>
       </div>
       
       <button type="submit" class="submit-btn">Send Message</button>
       <p class="form-note">
-        <small>Note: After submitting, you'll be redirected to Google Forms. Click "Back" to return to this site.</small>
+        <small>After submitting, you'll be redirected to Google Forms. Click "Back" to return to this site.</small>
       </p>
     </form>
     
-    <!-- Alternate Method: Direct messaging links -->
-    <CommandPrompt command="ping --alt-routes" />
-    
-    <div class="alt-routes">
-      <div class="route">
-        <span class="route-arrow">→</span>
-        <span class="route-name">LinkedIn:</span>
-        <a href="https://www.linkedin.com/in/skdogra" target="_blank" rel="noopener">in/skdogra</a>
-      </div>
-      
-      <div class="route">
-        <span class="route-arrow">→</span>
-        <span class="route-name">Email:</span>
-        <a href="mailto:skdogra11@yahoo.co.in">skdogra11@yahoo.co.in</a>
-      </div>
+    <div class="divider"></div>
 
-      <div class="route">
-        <span class="route-arrow">→</span>
-        <span class="route-name">Phone:</span>
-        <span>+91-99992-30777</span>
+    <h2>Other Ways to Reach Me</h2>
+    
+    <div class="contact-cards">
+      <a href="https://www.linkedin.com/in/skdogra" target="_blank" rel="noopener" class="contact-card">
+        <span class="contact-card-label">LinkedIn</span>
+        <span class="contact-card-value">in/skdogra</span>
+      </a>
+      
+      <a href="mailto:skdogra11@yahoo.co.in" class="contact-card">
+        <span class="contact-card-label">Email</span>
+        <span class="contact-card-value">skdogra11@yahoo.co.in</span>
+      </a>
+
+      <div class="contact-card">
+        <span class="contact-card-label">Phone</span>
+        <span class="contact-card-value">+91-99992-30777</span>
       </div>
     </div>
   </div>
 </MainLayout>
 
 <style>
-  .terminal-path {
-    color: var(--terminal-green);
-    margin-bottom: 15px;
-    font-family: 'Fira Code', monospace;
-    font-weight: bold;
-  }
-  
-  .ping-container {
-    max-width: 700px;
+  .contact-container {
+    max-width: 600px;
     margin: 0 auto;
   }
-  
-  .terminal-output {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left: 1px solid var(--terminal-green);
-    padding: 10px 15px;
-    margin: 10px 0 20px 0;
-    border-radius: 4px;
-    opacity: 0.9;
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
   }
-  
-  .terminal-output p {
-    margin-bottom: 10px;
-    line-height: 1.5;
+
+  .intro {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
   }
   
   .contact-form {
-    margin: 30px 0;
+    margin-bottom: 40px;
   }
   
   .form-group {
     margin-bottom: 20px;
   }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 6px;
+  }
   
   input, textarea {
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px 14px;
+    background-color: var(--highlight-bg);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 8px;
     color: var(--text-color);
-    font-family: 'Fira Code', monospace;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
   }
   
   input:focus, textarea:focus {
     outline: none;
-    border-color: var(--terminal-green);
-    box-shadow: 0 0 0 1px var(--terminal-green);
+    border-color: var(--accent-light);
+    box-shadow: 0 0 0 3px var(--accent-subtle);
   }
   
   .submit-btn {
-    background-color: rgba(12, 143, 32, 0.8);
+    background-color: var(--accent);
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    font-weight: bold;
-    border-radius: 4px;
+    padding: 10px 24px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    font-family: 'Fira Code', monospace;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
     transition: all 0.2s ease;
   }
   
   .submit-btn:hover {
-    background-color: var(--terminal-blue);
+    background-color: var(--accent-light);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
   
   .form-note {
-    margin-top: 10px;
+    margin-top: 12px;
     color: var(--date-color);
     font-style: italic;
   }
-  
-  .alt-routes {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left: 1px solid var(--terminal-green);
-    padding: 10px 15px;
-    margin: 20px 0;
-    border-radius: 4px;
-    opacity: 0.9;
+
+  .divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 40px 0;
   }
-  
-  .route {
-    padding: 5px 0;
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .contact-cards {
+    display: grid;
+    gap: 12px;
+  }
+
+  .contact-card {
     display: flex;
     align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: var(--highlight-bg);
+    color: var(--text-color);
   }
-  
-  .route-arrow {
-    color: var(--terminal-green);
-    margin-right: 8px;
-  }
-  
-  .route-name {
-    color: var(--terminal-purple);
-    min-width: 80px;
-    margin-right: 5px;
-  }
-  
-  a {
-    color: var(--link-color);
+
+  a.contact-card:hover {
+    border-color: var(--accent-light);
+    box-shadow: var(--card-shadow-hover);
     text-decoration: none;
   }
-  
-  a:hover {
-    text-decoration: underline;
+
+  .contact-card-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent);
+    min-width: 70px;
   }
-  
-  /* Form validation messages */
+
+  .contact-card-value {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
   input:invalid, textarea:invalid {
     border-color: var(--border-color);
   }
   
   input:focus:invalid, textarea:focus:invalid {
     border-color: #e74c3c;
-    box-shadow: 0 0 0 1px #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
   }
 </style>

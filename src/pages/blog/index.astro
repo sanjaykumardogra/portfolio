@@ -3,9 +3,7 @@ import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import BlogPostPreview from '../../components/BlogPostPreview.astro';
 import BlogPostListPreview from '../../components/BlogPostListPreview.astro';
-import CommandPrompt from '../../components/CommandPrompt.astro';
 
-// Get all blog posts, sorted by date
 const allPosts = await getCollection('blog', ({ data }) => {
   return import.meta.env.DEV || !data.draft;
 });
@@ -15,10 +13,33 @@ const sortedPosts = allPosts.sort(
 );
 ---
 
-<MainLayout title="Blog Posts | Terminal Blog" description="List of all blog posts">
-  <CommandPrompt command="ls -la blog-posts/" />
+<MainLayout title="Insights | S K Dogra" description="Industry insights and perspectives">
+  <h1 class="page-title">Insights</h1>
+  <p class="page-intro">{sortedPosts.length} articles on industry trends, business strategy, and market perspectives.</p>
+
   <BlogPostListPreview posts={sortedPosts} />
 
-  <CommandPrompt command="cat blog-posts/*" />
-  {sortedPosts.map(post => <BlogPostPreview post={post} />)}
+  <div class="post-list">
+    {sortedPosts.map(post => <BlogPostPreview post={post} />)}
+  </div>
 </MainLayout>
+
+<style>
+  .page-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .page-intro {
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+  }
+
+  .post-list {
+    margin-top: 8px;
+  }
+</style>

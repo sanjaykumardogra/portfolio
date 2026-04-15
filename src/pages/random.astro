@@ -1,133 +1,239 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import CommandPrompt from '../components/CommandPrompt.astro';
 ---
 
 <MainLayout title="Career | S K Dogra" description="Career highlights and key roles">
-  <CommandPrompt command="curl -s https://www.linkedin.com/in/skdogra" />
 
-  <div class="posts-container">
-    <div class="content-wrapper">
-      <h2>Career Timeline</h2>
-      <ul class="project-list">
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Industry Consultant</span>
-          <span class="project-desc">— Advisory across panels, wood substitutes & allied sectors (Sep 2022 – Present)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Archit Nuwood Industries</span>
-          <span class="project-desc">— National Business Head · 360 CBM/day MDF plant commercialization (Jun 2020 – Sep 2022)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Amul Group of Companies</span>
-          <span class="project-desc">— Business Head · 20 countries, 70 distributors, 3000+ dealers (Apr 2016 – Jun 2020)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">PCM Care JV</span>
-          <span class="project-desc">— Business Head · Railways, Defence, NHAI, Metro & Smart Cities (May 2013 – Apr 2016)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Greenply Industries Limited</span>
-          <span class="project-desc">— DGM, Centralized Biz Dev · India's largest interior infrastructure company (Apr 2006 – May 2013)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Nuchem Limited</span>
-          <span class="project-desc">— Sr. Manager, Business Development · Early MDF market pioneer (Jun 1991 – Apr 2006)</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Indian Plywood Mfg. Co. & Harrison Locks</span>
-          <span class="project-desc">— Sales & Institutional Sales roles (Jul 1984 – May 1991)</span>
-        </li>
-      </ul>
+  <div class="career-container">
+    <h1>Career Timeline</h1>
+    <p class="intro">Over three decades of leadership in India's interior infrastructure and construction products industry.</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Sep 2022 – Present</span>
+          <h3>Industry Consultant</h3>
+          <p>Advisory across panels, wood substitutes & allied sectors</p>
+        </div>
+      </div>
 
-      <h2>Key Impact Areas</h2>
-      <ul class="project-list">
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Greenfield Launches</span>
-          <span class="project-desc">— Led MDF, HPL, WPC, ACP commercialization from plant setup to market scale</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">A2G Project Sales</span>
-          <span class="project-desc">— Secured large-scale tenders across Defence, Railways, NHAI, Housing & Smart Cities</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Quality & Certifications</span>
-          <span class="project-desc">— FSC COC/CW, CARB, GRIHA, IGBC, BIS/ISI, TQM, IMS compliance leadership</span>
-        </li>
-        <li>
-          <span class="arrow">→</span>
-          <span class="project-link">Distribution Networks</span>
-          <span class="project-desc">— Built and scaled trade, converter & dealer networks across India and 20+ countries</span>
-        </li>
-      </ul>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Jun 2020 – Sep 2022</span>
+          <h3>Archit Nuwood Industries</h3>
+          <p>National Business Head &middot; 360 CBM/day MDF plant commercialization</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Apr 2016 – Jun 2020</span>
+          <h3>Amul Group of Companies</h3>
+          <p>Business Head &middot; 20 countries, 70 distributors, 3000+ dealers</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">May 2013 – Apr 2016</span>
+          <h3>PCM Care JV</h3>
+          <p>Business Head &middot; Railways, Defence, NHAI, Metro & Smart Cities</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Apr 2006 – May 2013</span>
+          <h3>Greenply Industries Limited</h3>
+          <p>DGM, Centralized Business Development &middot; India's largest interior infrastructure company</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Jun 1991 – Apr 2006</span>
+          <h3>Nuchem Limited</h3>
+          <p>Sr. Manager, Business Development &middot; Early MDF market pioneer</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">Jul 1984 – May 1991</span>
+          <h3>Indian Plywood Mfg. Co. & Harrison Locks</h3>
+          <p>Sales & Institutional Sales roles</p>
+        </div>
+      </div>
     </div>
+
+    <section class="impact-section">
+      <h2>Key Impact Areas</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h4>Greenfield Launches</h4>
+          <p>Led MDF, HPL, WPC, ACP commercialization from plant setup to market scale</p>
+        </div>
+        <div class="impact-card">
+          <h4>A2G Project Sales</h4>
+          <p>Secured large-scale tenders across Defence, Railways, NHAI, Housing & Smart Cities</p>
+        </div>
+        <div class="impact-card">
+          <h4>Quality & Certifications</h4>
+          <p>FSC COC/CW, CARB, GRIHA, IGBC, BIS/ISI, TQM, IMS compliance leadership</p>
+        </div>
+        <div class="impact-card">
+          <h4>Distribution Networks</h4>
+          <p>Built and scaled trade, converter & dealer networks across India and 20+ countries</p>
+        </div>
+      </div>
+    </section>
   </div>
 </MainLayout>
 
 <style>
-  .posts-container {
-    max-width: 800px;
+  .career-container {
+    max-width: 750px;
     margin: 0 auto;
   }
 
-  .content-wrapper {
-    padding-left: 20px;
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
   }
 
-  h2 {
-    color: var(--terminal-green);
-    font-size: 1.3rem;
-    margin: 30px 0 15px;
+  .intro {
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    line-height: 1.6;
   }
 
-  h2:first-child {
-    margin-top: 10px;
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 48px;
   }
 
-  .project-list {
-    list-style: none;
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border-color);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 28px;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--content-bg);
+    border: 3px solid var(--accent);
+    z-index: 1;
+  }
+
+  .timeline-item:first-child .timeline-marker {
+    background: var(--accent);
+  }
+
+  .timeline-content {
     padding: 0;
+  }
+
+  .timeline-period {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .timeline-content h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 4px 0 6px;
+  }
+
+  .timeline-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
     margin: 0;
   }
 
-  .project-list li {
-    display: flex;
-    align-items: baseline;
-    padding: 6px 0;
-    font-size: 0.95em;
+  .impact-section {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .impact-card {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--highlight-bg);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .impact-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .impact-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .impact-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
     line-height: 1.5;
+    margin: 0;
   }
 
-  .arrow {
-    color: var(--terminal-green);
-    margin-right: 10px;
-    font-weight: bold;
-    flex-shrink: 0;
-  }
-
-  .project-link {
-    color: var(--link-color);
-    text-decoration: none;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  .project-link:hover {
-    text-decoration: underline;
-  }
-
-  .project-desc {
-    color: var(--text-muted, #9aa5ce);
-    margin-left: 5px;
+  @media (max-width: 600px) {
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -4,23 +4,23 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
 ---
 
 <header class="header">
-  <div class="terminal-header">
-    <div class="terminal-dots">
-      <div class="dot red"></div>
-      <div class="dot yellow"></div>
-      <div class="dot green"></div>
-    </div>
-    <nav class="terminal-nav">
-      <a href={base} class={`command ${routePath === '/' ? 'active' : ''}`}>cd ~</a>
-      <a href={`${base}blog`} class={`command ${routePath.startsWith('/blog') ? 'active' : ''}`}>cd ~/blog</a>
-      <a href={`${base}random`} class={`command ${routePath === '/random' ? 'active' : ''}`}>rand</a>
-      <a href={`${base}whoami`} class={`command ${routePath === '/whoami' ? 'active' : ''}`}>whoami</a>
-      <a href={`${base}ping`} class={`command ${routePath === '/ping' ? 'active' : ''}`}>ping</a>
-      <a href={`${base}assets/resume/SKDogra.pdf`} target="_blank" rel="noopener noreferrer" class="command">cd ~/resume</a>
+  <div class="header-inner">
+    <a href={base} class="site-logo">
+      <span class="logo-name">S K Dogra</span>
+    </a>
+    <nav class="nav">
+      <a href={base} class={`nav-link ${routePath === '/' ? 'active' : ''}`}>Home</a>
+      <a href={`${base}blog`} class={`nav-link ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a>
+      <a href={`${base}random`} class={`nav-link ${routePath === '/random' ? 'active' : ''}`}>Career</a>
+      <a href={`${base}whoami`} class={`nav-link ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
+      <a href={`${base}ping`} class={`nav-link ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
+      <a href={`${base}assets/resume/SKDogra.pdf`} target="_blank" rel="noopener noreferrer" class="nav-link resume-link">Resume</a>
     </nav>
-    <span class="prompt">$</span>
-    <button id="search-button" class="search-button">
-      search <span class="search-term">--query='search term'</span>
+    <button id="search-button" class="search-btn" aria-label="Search">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
     </button>
   </div>
 </header>
@@ -28,89 +28,114 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
 <style>
   .header {
     background-color: var(--header-bg);
-    padding: 10px;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(8px);
   }
   
-  .terminal-header {
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    height: 64px;
   }
   
-  .terminal-dots {
-    display: flex;
-    margin-right: 15px;
-  }
-  
-  .terminal-nav {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .command {
-    color: var(--command-color);
-    margin-right: 10px;
-    white-space: nowrap;
+  .site-logo {
     text-decoration: none;
-    padding: 3px 6px;
-    border-radius: 3px;
-    transition: background-color 0.2s, color 0.2s;
+    margin-right: auto;
+  }
+  
+  .logo-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  
+  .nav-link:hover {
+    color: var(--text-color);
+    background-color: var(--highlight-bg);
+    text-decoration: none;
+  }
+  
+  .nav-link.active {
+    color: var(--accent);
+    background-color: var(--accent-subtle);
+    font-weight: 600;
   }
 
-  .subscribe-btn {
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
+  .resume-link {
+    border: 1px solid var(--border-color);
   }
   
-  .command:hover {
-    background-color: var(--highlight-bg);
-    text-decoration: none;
-  }
-  
-  .command.active {
-    color: var(--terminal-green);
-    font-weight: 500;
-  }
-  
-  .prompt {
-    color: var(--terminal-purple);
-    margin-right: 5px;
-  }
-  
-  .search-button {
-    color: var(--terminal-blue);
-    margin-left: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
+  .search-btn {
     display: flex;
     align-items: center;
-    padding: 3px 0;
+    justify-content: center;
+    margin-left: 12px;
+    padding: 8px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
   }
   
-  .search-term {
+  .search-btn:hover {
+    color: var(--text-color);
     background-color: var(--highlight-bg);
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-left: 5px;
+    border-color: var(--text-muted);
   }
   
   @media (max-width: 768px) {
-    .terminal-header {
-      overflow-x: auto;
+    .header-inner {
+      height: 56px;
+    }
+
+    .nav {
+      gap: 0;
     }
     
-    .search-button {
-      margin-left: 10px;
+    .nav-link {
+      font-size: 0.8rem;
+      padding: 5px 8px;
+    }
+
+    .logo-name {
+      font-size: 1.1rem;
+    }
+
+    .resume-link {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-link {
+      font-size: 0.75rem;
+      padding: 4px 6px;
     }
   }
 </style>
@@ -121,5 +146,4 @@ const routePath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
   searchButton?.addEventListener('click', () => {
     document.dispatchEvent(new CustomEvent('toggle-search'));
   });
-
 </script>
