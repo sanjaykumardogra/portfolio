@@ -7,7 +7,7 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
 <header class="header">
   <div class="header-inner">
     <a href={base} class="site-logo">
-      <span class="logo-name">S K Dogra</span>
+      <span class="logo-name">SK Dogra</span>
     </a>
     <nav class="nav">
       <a href={base} class={`nav-link ${routePath === '/' ? 'active' : ''}`}>Home</a>
@@ -37,6 +37,11 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     animation: slideDown 0.4s ease both;
+    transition: border-color 0.3s ease;
+  }
+
+  .header.scrolled {
+    border-bottom-color: var(--accent-glow);
   }
   
   .header-inner {
@@ -46,6 +51,11 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     display: flex;
     align-items: center;
     height: 64px;
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header.scrolled .header-inner {
+    height: 52px;
   }
   
   .site-logo {
@@ -62,6 +72,11 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.02em;
+    transition: font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header.scrolled .logo-name {
+    font-size: 1.05rem;
   }
   
   .nav {
@@ -104,18 +119,36 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
   }
 
   .resume-link {
+    background: var(--accent);
+    color: #fff !important;
     border: 1px solid var(--accent);
-    color: var(--accent);
     border-radius: 8px;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: resumeGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes resumeGlow {
+    0%, 100% { box-shadow: 0 2px 8px var(--accent-glow); }
+    50% { box-shadow: 0 2px 16px var(--accent-glow), 0 0 24px var(--accent-glow); }
   }
 
   .resume-link:hover {
     background: var(--accent-gradient);
-    color: #fff;
     border-color: transparent;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
+    animation: none;
+  }
+
+  .header.scrolled .resume-link {
+    box-shadow: 0 2px 8px var(--accent-glow);
+  }
+
+  .header.scrolled .resume-link:hover {
+    background: var(--accent-gradient);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
   }
   
   .search-btn {
@@ -172,8 +205,21 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
 
 <script>
   const searchButton = document.getElementById('search-button');
-  
   searchButton?.addEventListener('click', () => {
     document.dispatchEvent(new CustomEvent('toggle-search'));
   });
+
+  const header = document.querySelector('.header');
+  if (header) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 80);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 </script>
