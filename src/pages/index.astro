@@ -19,6 +19,7 @@ const recentPosts = sortedPosts.slice(0, 5);
 <MainLayout title="SK Dogra | Portfolio" description="SK Dogra — Strategic Business Leader | 30+ Years of Industry Expertise | Project Sales">
   
   <section class="hero">
+    <canvas class="hero-sparkles" id="hero-sparkles" aria-hidden="true"></canvas>
     <div class="hero-badge">
       <span class="hero-badge-primary">Strategic Business Leader</span>
       <span class="hero-badge-sep"></span>
@@ -141,6 +142,17 @@ const recentPosts = sortedPosts.slice(0, 5);
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+  }
+
+  .hero-sparkles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 0.8s forwards;
   }
 
   .hero-badge {
@@ -674,8 +686,103 @@ const recentPosts = sortedPosts.slice(0, 5);
     });
   }
 
+  function initSparkles() {
+    const canvas = document.getElementById('hero-sparkles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    let w, h;
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const isDark = () => document.documentElement.classList.contains('dark-theme');
+    const COUNT = 45;
+    const particles = [];
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.8 + Math.random() * 1.8,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        phase: Math.random() * Math.PI * 2,
+        freq: 0.5 + Math.random() * 1.5,
+        warm: Math.random() < 0.2,
+      });
+    }
+
+    let running = true;
+    const observer = new IntersectionObserver(([e]) => {
+      running = e.isIntersecting;
+      if (running) requestAnimationFrame(draw);
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
+
+    function draw(time) {
+      if (!running) return;
+      const t = time / 1000;
+      const dark = isDark();
+
+      ctx.clearRect(0, 0, w, h);
+
+      const tealRGB = dark ? '107,179,166' : '15,118,110';
+      const warmRGB = dark ? '212,165,68' : '217,119,6';
+
+      for (const p of particles) {
+        p.x += p.vx / w;
+        p.y += p.vy / h;
+
+        if (p.x < -0.02) p.x = 1.02;
+        if (p.x > 1.02) p.x = -0.02;
+        if (p.y < -0.02) p.y = 1.02;
+        if (p.y > 1.02) p.y = -0.02;
+
+        const pulse = (Math.sin(t * p.freq + p.phase) + 1) / 2;
+        const alpha = 0.15 + pulse * (dark ? 0.55 : 0.4);
+        const radius = p.r * (0.8 + pulse * 0.4);
+        const rgb = p.warm ? warmRGB : tealRGB;
+
+        const px = p.x * w;
+        const py = p.y * h;
+
+        if (radius > 1.4) {
+          const glowR = radius * 4;
+          const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
+          grad.addColorStop(0, `rgba(${rgb}, ${alpha * 0.3})`);
+          grad.addColorStop(1, `rgba(${rgb}, 0)`);
+          ctx.beginPath();
+          ctx.arc(px, py, glowR, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(px, py, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb}, ${alpha})`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  }
+
   function init() {
     runSlotMachine();
+    initSparkles();
   }
 
   if (document.readyState === 'loading') {
