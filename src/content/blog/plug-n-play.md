@@ -14,10 +14,10 @@ My instrumental support to any panel business is governed by primary and seconda
 
 This is the engine. It covers all products, all segments, all-India:
 
-- **A2G Momentum** — sustaining relationships across Architect-to-Government channels
+- **A2G Momentum** — reflecting the continuity and strength of engagement across the entire project ecosystem—spanning Architects, Builders, Contractors, Dealers, Engineers, and Government authorities. It is about maintaining alignment, trust, and responsiveness at every stage of the project lifecycle.
 - **Market Presence** — ensuring the brand is specified, not just available
-- **Project Sales** — thin and thick repeat business through rate contracts and works contracts
-- **Tender Marketing** — systematic tracking and conversion of institutional tenders
+- **Project Sales** — dual-engine approach, primary sales driven through rate contracts and works contracts, and secondary sales sustained through contractors and trade networks.
+- **Tender Marketing** — systematic working, tracking and conversion of tenders and stipulated specifications to sales.
 - **Specification Ecosystem** — creating both market pull (architect demand) and push (contractor activation)
 
 ### 20% — Core Marketing & Benchmarks
@@ -34,6 +34,6 @@ This is the intelligence layer, covering both pre-launch and post-launch:
 
 The 20% track is where you diagnose — it tells you *how and where to change* in order to improve performance and bring consistency. The 80% track is where you execute.
 
-Most panel businesses get this ratio backwards. They over-invest in marketing materials and under-invest in on-ground business development. The result: beautiful brochures, empty order books.
+Most panel businesses get this ratio backwards. They over-invest in marketing materials and under-invest in on-ground business development. The result: beautiful brochures, thin order books.
 
 In accordance with business priorities, I conduct relevant activities across both tracks to ensure top-notch growth — always starting with the 80% that moves the needle.
