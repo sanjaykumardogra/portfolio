@@ -11,8 +11,7 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     </a>
     <nav class="nav">
       <a href={base} class={`nav-link magnetic ${routePath === '/' ? 'active' : ''}`}>Home</a>
-      <!-- TODO: Uncomment when blog/insights content is ready -->
-      <!-- <a href={`${base}blog`} class={`nav-link magnetic ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a> -->
+      <a href={`${base}blog`} class={`nav-link magnetic ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a>
       <a href={`${base}random`} class={`nav-link magnetic ${routePath === '/random' ? 'active' : ''}`}>Career</a>
       <a href={`${base}whoami`} class={`nav-link magnetic ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
       <a href={`${base}ping`} class={`nav-link magnetic ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
@@ -103,14 +102,16 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
   }
 
   .nav-link:nth-child(1) { --nav-clr: #2563eb; --nav-glow: rgba(37,99,235,0.08); }
-  .nav-link:nth-child(2) { --nav-clr: #e11d48; --nav-glow: rgba(225,29,72,0.08); }
-  .nav-link:nth-child(3) { --nav-clr: #d97706; --nav-glow: rgba(217,119,6,0.08); }
-  .nav-link:nth-child(4) { --nav-clr: #7c3aed; --nav-glow: rgba(124,58,237,0.08); }
+  .nav-link:nth-child(2) { --nav-clr: #0891b2; --nav-glow: rgba(8,145,178,0.08); }
+  .nav-link:nth-child(3) { --nav-clr: #e11d48; --nav-glow: rgba(225,29,72,0.08); }
+  .nav-link:nth-child(4) { --nav-clr: #d97706; --nav-glow: rgba(217,119,6,0.08); }
+  .nav-link:nth-child(5) { --nav-clr: #7c3aed; --nav-glow: rgba(124,58,237,0.08); }
 
   :global(.dark-theme) .nav-link:nth-child(1) { --nav-clr: #60a5fa; --nav-glow: rgba(96,165,250,0.1); }
-  :global(.dark-theme) .nav-link:nth-child(2) { --nav-clr: #fb7185; --nav-glow: rgba(251,113,133,0.1); }
-  :global(.dark-theme) .nav-link:nth-child(3) { --nav-clr: #fbbf24; --nav-glow: rgba(251,191,36,0.1); }
-  :global(.dark-theme) .nav-link:nth-child(4) { --nav-clr: #a78bfa; --nav-glow: rgba(167,139,250,0.1); }
+  :global(.dark-theme) .nav-link:nth-child(2) { --nav-clr: #22d3ee; --nav-glow: rgba(34,211,238,0.1); }
+  :global(.dark-theme) .nav-link:nth-child(3) { --nav-clr: #fb7185; --nav-glow: rgba(251,113,133,0.1); }
+  :global(.dark-theme) .nav-link:nth-child(4) { --nav-clr: #fbbf24; --nav-glow: rgba(251,191,36,0.1); }
+  :global(.dark-theme) .nav-link:nth-child(5) { --nav-clr: #a78bfa; --nav-glow: rgba(167,139,250,0.1); }
   
   .nav-link:hover {
     color: var(--nav-clr, var(--text-color));

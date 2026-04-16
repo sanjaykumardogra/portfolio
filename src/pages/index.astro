@@ -68,8 +68,7 @@ const recentPosts = sortedPosts.slice(0, 5);
           <span class="link-card-desc">Background & expertise</span>
         </span>
       </a>
-      {/* TODO: Uncomment when blog/insights content is ready
-      <a href={`${base}blog`} class="link-card">
+      <a href={`${base}blog`} class="link-card magnetic">
         <span class="link-card-arrow">&rarr;</span>
         <span class="link-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
@@ -78,7 +77,7 @@ const recentPosts = sortedPosts.slice(0, 5);
           <span class="link-card-title">Insights</span>
           <span class="link-card-desc">Industry perspectives</span>
         </span>
-      </a> */}
+      </a>
       <a href={`${base}random`} class="link-card magnetic">
         <span class="link-card-arrow">&rarr;</span>
         <span class="link-card-icon">
@@ -112,7 +111,6 @@ const recentPosts = sortedPosts.slice(0, 5);
     </div>
   </section>
   
-  {/* TODO: Uncomment when blog/insights content is ready
   <section class="recent-posts">
     <h2>Recent Insights</h2>
     {recentPosts.map((post, i) => {
@@ -130,7 +128,7 @@ const recentPosts = sortedPosts.slice(0, 5);
         </a>
       );
     })}
-  </section> */}
+  </section>
 </MainLayout>
 
 <style>
