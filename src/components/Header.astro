@@ -11,7 +11,7 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     </a>
     <nav class="nav">
       <a href={base} class={`nav-link magnetic ${routePath === '/' ? 'active' : ''}`}>Home</a>
-      <a href={`${base}blog`} class={`nav-link magnetic ${routePath.startsWith('/blog') ? 'active' : ''}`}>Insights</a>
+      <a href={`${base}blog`} class={`nav-link insights-link magnetic ${routePath.startsWith('/blog') ? 'active' : ''}`}><span class="insights-sparkle">✦</span>Insights</a>
       <a href={`${base}random`} class={`nav-link magnetic ${routePath === '/random' ? 'active' : ''}`}>Career</a>
       <a href={`${base}whoami`} class={`nav-link magnetic ${routePath === '/whoami' ? 'active' : ''}`}>About</a>
       <a href={`${base}ping`} class={`nav-link magnetic ${routePath === '/ping' ? 'active' : ''}`}>Contact</a>
@@ -133,6 +133,83 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
     height: 2px;
     background: var(--nav-clr, var(--accent));
     border-radius: 1px;
+  }
+
+  .insights-link {
+    --nav-clr: #0891b2;
+    --i-glow: rgba(8, 145, 178, 0.35);
+    background: linear-gradient(135deg, rgba(8,145,178,0.1), rgba(6,182,212,0.06));
+    border: 1px solid rgba(8, 145, 178, 0.25);
+    border-radius: 8px;
+    font-weight: 600;
+    color: #0891b2 !important;
+    animation: insightsFloat 3s ease-in-out infinite, insightsGlow 2s ease-in-out infinite;
+  }
+
+  .insights-sparkle {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 0.7em;
+    animation: sparkleBlink 1.4s ease-in-out infinite;
+  }
+
+  @keyframes insightsFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+
+  @keyframes insightsGlow {
+    0%, 100% { box-shadow: 0 0 4px var(--i-glow), 0 0 0 transparent; }
+    50% { box-shadow: 0 0 10px var(--i-glow), 0 2px 16px rgba(8,145,178,0.15); }
+  }
+
+  @keyframes sparkleBlink {
+    0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    25% { opacity: 0.3; transform: scale(0.6) rotate(-20deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+    75% { opacity: 0.5; transform: scale(0.8) rotate(-10deg); }
+  }
+
+  .insights-link:hover {
+    background: linear-gradient(135deg, rgba(8,145,178,0.16), rgba(6,182,212,0.1)) !important;
+    border-color: rgba(8, 145, 178, 0.4);
+    color: #0891b2 !important;
+    animation: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(8,145,178,0.2);
+  }
+
+  .insights-link:hover .insights-sparkle {
+    animation: none;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .insights-link.active {
+    background: rgba(8, 145, 178, 0.12);
+    border-color: rgba(8, 145, 178, 0.3);
+    color: #0891b2 !important;
+  }
+
+  :global(.dark-theme) .insights-link {
+    --nav-clr: #22d3ee;
+    --i-glow: rgba(34, 211, 238, 0.3);
+    background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(6,182,212,0.06));
+    border-color: rgba(34, 211, 238, 0.25);
+    color: #22d3ee !important;
+  }
+
+  :global(.dark-theme) .insights-link:hover {
+    background: linear-gradient(135deg, rgba(34,211,238,0.16), rgba(6,182,212,0.1)) !important;
+    border-color: rgba(34, 211, 238, 0.4);
+    color: #22d3ee !important;
+    box-shadow: 0 4px 14px rgba(34,211,238,0.15);
+  }
+
+  :global(.dark-theme) .insights-link.active {
+    background: rgba(34, 211, 238, 0.12);
+    border-color: rgba(34, 211, 238, 0.3);
+    color: #22d3ee !important;
   }
 
   .resume-link {
