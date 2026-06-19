@@ -276,31 +276,68 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
   
   @media (max-width: 768px) {
     .header-inner {
-      height: 56px;
+      height: 52px;
+      padding: 0 12px;
     }
 
     .nav {
       gap: 0;
     }
-    
+
     .nav-link {
       font-size: 0.8rem;
       padding: 5px 8px;
     }
 
     .logo-name {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .resume-link {
       display: none;
     }
+
+    .insights-link {
+      border: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      animation: none !important;
+      padding: 5px 8px;
+    }
+
+    .insights-sparkle {
+      display: none;
+    }
+
+    .search-btn {
+      margin-left: 6px;
+      padding: 6px;
+    }
+
+    .search-btn svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   @media (max-width: 480px) {
+    .header-inner {
+      padding: 0 8px;
+    }
+
     .nav-link {
-      font-size: 0.75rem;
-      padding: 4px 6px;
+      font-size: 0.72rem;
+      padding: 4px 5px;
+    }
+
+    .logo-name {
+      font-size: 0.95rem;
+      margin-right: 4px;
+    }
+
+    .search-btn {
+      margin-left: 4px;
+      padding: 5px;
     }
   }
 </style>
