@@ -1,0 +1,332 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const portfolioUrl = 'https://sanjaykumardogra.github.io/portfolio';
+const phoneDisplay = '+91-99992-30777';
+const phoneWhatsApp = '919999230777';
+const whatsappUrl = `https://wa.me/${phoneWhatsApp}?text=${encodeURIComponent('Hello SK Dogra, I found your portfolio and would like to connect.')}`;
+const email = 'skdogra11@yahoo.co.in';
+const linkedin = 'https://www.linkedin.com/in/skdogra';
+---
+
+<MainLayout title="Contact Me | SK Dogra" description="Contact SK Dogra on WhatsApp or scan the QR code to visit the portfolio.">
+  <div class="contactme-page">
+    <header class="contactme-header">
+      <h1>Contact Me</h1>
+      <p class="intro">
+        Reach out on WhatsApp or scan the QR code below to open my portfolio on your phone.
+      </p>
+    </header>
+
+    <section class="profile-card">
+      <div class="profile-avatar">SK</div>
+      <div class="profile-info">
+        <h2>SK Dogra</h2>
+        <p>Strategic Business Leader · Project Sales</p>
+        <p class="profile-meta">30+ years in panels, MDF &amp; building materials</p>
+      </div>
+    </section>
+
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Message on WhatsApp
+    </a>
+
+    <div class="detail-grid">
+      <a href={`tel:${phoneWhatsApp}`} class="detail-item">
+        <span class="detail-label">Phone</span>
+        <span class="detail-value">{phoneDisplay}</span>
+      </a>
+      <a href={`mailto:${email}`} class="detail-item">
+        <span class="detail-label">Email</span>
+        <span class="detail-value">{email}</span>
+      </a>
+      <a href={linkedin} target="_blank" rel="noopener noreferrer" class="detail-item">
+        <span class="detail-label">LinkedIn</span>
+        <span class="detail-value">linkedin.com/in/skdogra</span>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="qr-section">
+      <h2>Portfolio QR Code</h2>
+      <p class="qr-intro">Scan to open my portfolio on any device.</p>
+
+      <div class="qr-card">
+        <img
+          src={`${base}assets/portfolio-qr.png`}
+          alt="QR code linking to SK Dogra portfolio"
+          width="220"
+          height="220"
+          class="qr-image"
+        />
+        <p class="qr-url">{portfolioUrl}</p>
+        <button type="button" class="copy-btn" id="copy-link-btn">Copy link</button>
+      </div>
+    </section>
+
+    <p class="back-link-wrap">
+      <a href={`${base}ping`} class="back-link">← Back to Contact page</a>
+    </p>
+  </div>
+</MainLayout>
+
+<style>
+  .contactme-page {
+    max-width: 520px;
+    margin: 0 auto;
+    animation: fadeInUp 0.5s ease both;
+    animation-delay: 0.15s;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 40%, #25d366 70%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite alternate;
+    margin-bottom: 10px;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  :global(.dark-theme) h1 {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #4ade80 70%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 200% 200%;
+  }
+
+  .intro {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .profile-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    background: var(--highlight-bg);
+    margin-bottom: 20px;
+  }
+
+  .profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    flex-shrink: 0;
+  }
+
+  .profile-info h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    margin: 0 0 4px;
+    color: var(--text-color);
+  }
+
+  .profile-info p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .profile-meta {
+    margin-top: 4px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: #25d366;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+    text-decoration: none;
+  }
+
+  .detail-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color-light);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .detail-item:hover {
+    border-color: var(--accent);
+    background: var(--highlight-warm);
+    text-decoration: none;
+  }
+
+  .detail-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .detail-value {
+    font-size: 0.92rem;
+    color: var(--link-color);
+    word-break: break-all;
+  }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #2563eb, #25d366, #7c3aed, transparent);
+    margin: 36px 0;
+    border-radius: 1px;
+    opacity: 0.4;
+  }
+
+  .qr-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  :global(.dark-theme) .qr-section h2 {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .qr-intro {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 20px;
+  }
+
+  .qr-card {
+    text-align: center;
+    padding: 28px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: #fff;
+  }
+
+  :global(.dark-theme) .qr-card {
+    background: var(--highlight-bg);
+  }
+
+  .qr-image {
+    display: block;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+  }
+
+  .qr-url {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    word-break: break-all;
+    margin-bottom: 14px;
+  }
+
+  .copy-btn {
+    background: var(--highlight-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .copy-btn.copied {
+    border-color: #25d366;
+    color: #25d366;
+  }
+
+  .back-link-wrap {
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .back-link {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>
+
+<script define:vars={{ portfolioUrl }}>
+  const copyBtn = document.getElementById('copy-link-btn');
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(portfolioUrl);
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy link';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    } catch {
+      copyBtn.textContent = 'Copy failed';
+    }
+  });
+</script>
