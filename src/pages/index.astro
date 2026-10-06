@@ -467,13 +467,14 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   .link-card {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 22px 24px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 20px;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    border: 1px solid var(--border-color-light);
+    border: 1px solid var(--border-color);
     border-radius: 14px;
     background: var(--highlight-bg);
     animation: fadeInUp 0.4s ease both;
@@ -496,23 +497,9 @@ const recentPosts = sortedPosts.slice(0, 5);
     left: 120%;
   }
 
-  .link-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 24px;
-    right: 24px;
-    height: 2px;
-    background: var(--card-clr, var(--accent));
-    border-radius: 0 0 2px 2px;
-    opacity: 0.45;
-    transition: opacity 0.3s ease, left 0.3s ease, right 0.3s ease;
-  }
-
-  .link-card:hover::after {
-    opacity: 0.9;
-    left: 0;
-    right: 0;
+  .link-card:focus-visible {
+    outline: 2px solid var(--card-clr);
+    outline-offset: 4px;
   }
 
   .link-card:nth-child(1) {
@@ -616,9 +603,10 @@ const recentPosts = sortedPosts.slice(0, 5);
   }
 
   .link-card-resume {
-    border: 2px solid var(--card-clr);
-    background: var(--card-clr-subtle);
-    box-shadow: 0 2px 12px var(--card-clr-shadow);
+    grid-column: 1 / -1;
+    border: 1px solid color-mix(in srgb, var(--card-clr) 35%, var(--border-color));
+    background: linear-gradient(110deg, var(--card-clr-subtle), var(--highlight-bg));
+    box-shadow: none;
   }
 
   .link-card-resume .link-card-icon {
@@ -646,6 +634,8 @@ const recentPosts = sortedPosts.slice(0, 5);
     box-shadow: 0 8px 24px var(--card-clr-shadow), 0 2px 8px var(--card-clr-shadow);
   }
 
+  .link-card-resume:hover .link-card-arrow { border-color: rgba(255,255,255,0.4); }
+
   .link-card-resume:hover .link-card-title,
   .link-card-resume:hover .link-card-desc,
   .link-card-resume:hover .link-card-arrow {
@@ -663,7 +653,7 @@ const recentPosts = sortedPosts.slice(0, 5);
     justify-content: center;
     width: 48px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: 14px;
     background: var(--card-clr-subtle, var(--accent-subtle));
     color: var(--card-clr, var(--accent));
     flex-shrink: 0;
@@ -695,19 +685,31 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   .link-card-desc {
     font-size: 0.78rem;
-    color: var(--text-subtle);
-    margin-top: 3px;
+    color: var(--text-muted);
+    margin-top: 4px;
     line-height: 1.4;
   }
 
   .link-card-arrow {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: var(--text-subtle);
-    font-size: 0.85rem;
-    opacity: 0.4;
+    position: static;
+    order: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 1rem;
     transition: all 0.25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-card { animation: none; transition: none; }
+    .link-card::before { display: none; }
+    .link-card:hover { transform: none; }
   }
 
   .link-card:hover .link-card-arrow {
