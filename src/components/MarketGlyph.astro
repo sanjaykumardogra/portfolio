@@ -1,13 +1,8 @@
 ---
 interface Props { kind: 'Realty' | 'Interiors' | 'Exteriors' | 'Furniture' | 'Public Transport'; }
 const { kind } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const suppliedImage = kind === 'Exteriors' ? 'exteriors.png' : kind === 'Public Transport' ? 'public-transport.png' : null;
 ---
 
-{suppliedImage ? (
-  <img class="market-glyph supplied-glyph" src={`${base}assets/markets/${suppliedImage}`} alt="" width="1536" height="1024" loading="lazy" decoding="async" />
-) : (
 <svg class="market-glyph" aria-hidden="true" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
   {kind === 'Realty' && <>
     <path d="M8 90h104M43 64V10h24v80M67 90V23h22v67M47 17h6m7 0h3M47 25h6m7 0h3M47 33h6m7 0h3M47 41h6m7 0h3M47 49h6m7 0h3M47 57h6m7 0h3M72 31h12M72 39h12M72 47h12M72 55h12M72 63h12M72 71h12M72 79h12" />
@@ -17,15 +12,28 @@ const suppliedImage = kind === 'Exteriors' ? 'exteriors.png' : kind === 'Public 
     <path d="M13 18h79v67H13zM13 18l17 15h44l18-15M13 85l17-18h44l18 18M30 33v34m44-34v34M38 40h22v27H38zM42 44h14v23M18 36l7 5v20l-7 8zM79 40l8-6v24l-8 4zM30 55h-5M61 55h13M54 18v7m-5 0h10l-2 5h-6zM48 73h13M39 80h31" />
 
   </g>}
+  {kind === 'Exteriors' && <>
+    <!-- Cladding and a glazed corner, paired with a billboard and road sign. -->
+    <path d="M10 85V27L40 11l27 17v57M40 11v74M10 40l30-16m-30 29 30-16m-30 29 30-16m-30 29 30-16M19 23v59m5-62v62" />
+    <path d="M40 25l27 16M49 31v22m9-17v20M40 49l27 10M40 61l27 7M49 64v21m9-18v18M36 56l35 11v5L36 62zM8 85h64v5H8z" />
+    <path d="M79 24h32v24H79zM83 28h24v16H83zM86 39l6-6 5 5 3-3 4 4M93 48v20m5-20v37M83 24l-2-6h5m19 6-2-6h5" />
+    <circle cx="102" cy="32" r="1.5" />
+    <path d="M77 64h22l7 8-7 8H77zM81 72h17m-4-4 4 4-4 4M81 80v8m4-8v7M8 96c39 0 64-1 104-13M59 96l11-2m10-2 11-3m10-3 10-3" />
+  </>}
   {kind === 'Furniture' && <>
     <path d="M10 12h100v23H10zM35 12v23m22-23v23m24-23v23M16 23h5m23 0h5m17 0h5m19 0h5M10 42h100v29H10zM10 49h100M34 49v22m28-22v22m25-22v22M39 56h17m-17 8h17M68 53h13v14H68zM92 56h6M18 57h6M90 39v-7m-6 0h6M11 71v4m97-4v4" />
     <path d="M10 82h36v5H10zM14 87v10m28-10v10M28 87v9h14M32 91h5M60 84v-5h39v5M59 84q-5 0-5 5v5h51v-5q0-5-6-5v7H60zM58 94v3m43-3v3" />
   </>}
+  {kind === 'Public Transport' && <>
+    <!-- Skyline and elevated rail above a bus and passenger ship. -->
+    <path d="M29 30V18h13v12M45 30V9h14v21M62 30V14h13v16M78 30V21h13v9M33 23h5M49 15h6m-6 6h6M66 20h5m-5 5h5M82 26h5" />
+    <path d="M12 49c1-8 8-14 18-14h53c9 0 18 6 24 14H12zM18 43h10l6-8M37 35v14m25-14v14m24-13v13M42 39h15v6H42zM67 39h14v6H67zM91 41l8 4h-8zM8 53h104M33 53v8m6-8v8m43-8v8m6-8v8" />
+    <path d="M11 83V68q0-4 4-4h32q4 0 4 4v15H11zM11 75h40M17 68h10v7M31 68h14v7M30 75v8m-4-8v8M14 79h3m27 0h4M19 87h24" />
+    <circle cx="19" cy="84" r="3" /><circle cx="43" cy="84" r="3" />
+    <path d="M64 79h47l-9 9H72zM71 79l4-9h24l6 9M79 70v-6h11v6M85 64v-5M77 74h4m5 0h4m5 0h3M60 92q6-4 12 0t12 0t12 0t12 0M8 93h43M15 97h8m9 0h8" />
+  </>}
 </svg>
-)}
 
 <style>
   .market-glyph { display: block; width: 100%; max-width: 150px; aspect-ratio: 6 / 5; height: auto; object-fit: contain; margin: 0 auto; color: var(--accent); }
-  .supplied-glyph { mix-blend-mode: multiply; }
-  :global(.dark-theme) .supplied-glyph { filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
 </style>
