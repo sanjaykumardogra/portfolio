@@ -1,34 +1,31 @@
 ---
-interface Props { kind: 'Infrastructure' | 'Realty' | 'Interiors' | 'Exteriors' | 'Furniture'; }
+interface Props { kind: 'Realty' | 'Interiors' | 'Exteriors' | 'Furniture' | 'Public Transport'; }
 const { kind } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const suppliedImage = kind === 'Exteriors' ? 'exteriors.png' : kind === 'Public Transport' ? 'public-transport.png' : null;
 ---
 
+{suppliedImage ? (
+  <img class="market-glyph supplied-glyph" src={`${base}assets/markets/${suppliedImage}`} alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+) : (
 <svg class="market-glyph" aria-hidden="true" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-  {kind === 'Infrastructure' && <>
-    <!-- A connected urban district with bus routes, rail, roads and a port. -->
-    <path d="M43 40V14h16v26M59 40V7h15v33M74 40V20h12v20M47 20h7m-7 6h7m-7 6h7M63 14h7m-7 6h7m-7 6h7m-7 6h7M78 26h4m-4 6h4M39 40h51" />
-    <path d="M8 14h24v18H8zM8 22h24M13 17h14M12 32v4m16-4v4M11 27h3m12 0h3M89 14h24v18H89zM89 22h24M94 17h14M93 32v4m16-4v4M92 27h3m12 0h3" />
-    <path d="M18 42c0 9 14 8 22 15M102 42c0 9-14 8-22 15M45 48h30v30H45zM45 53h30M49 57h22v10H49zM49 72h3m16 0h3M50 78l-7 12m27-12 7 12M46 85h28M44 89h32" />
-    <path d="M33 60c-10 9-10 22-22 31m25-22c-6 8-7 16-15 24M26 72l-2 4m-2 5-2 4M85 65h25l-5 13H90zM92 65V52h10v13M96 52v-6m-4 12h10M81 83q5-5 10 0t10 0t10 0M81 90q5-5 10 0t10 0t10 0" />
-  </>}
   {kind === 'Realty' && <>
     <path d="M8 90h104M43 64V10h24v80M67 90V23h22v67M47 17h6m7 0h3M47 25h6m7 0h3M47 33h6m7 0h3M47 41h6m7 0h3M47 49h6m7 0h3M47 57h6m7 0h3M72 31h12M72 39h12M72 47h12M72 55h12M72 63h12M72 71h12M72 79h12" />
     <path d="M9 67l19-17 19 17M14 63v27h28V63M20 90V76h9v14M33 69h5v7h-5zM89 60h20v30H89M89 68h20M94 73v17m9-17v17M94 64h10M52 90V75h8v15" />
   </>}
-  {kind === 'Interiors' && <>
+  {kind === 'Interiors' && <g transform="translate(7 0)">
     <path d="M13 18h79v67H13zM13 18l17 15h44l18-15M13 85l17-18h44l18 18M30 33v34m44-34v34M38 40h22v27H38zM42 44h14v23M18 36l7 5v20l-7 8zM79 40l8-6v24l-8 4zM30 55h-5M61 55h13M54 18v7m-5 0h10l-2 5h-6zM48 73h13M39 80h31" />
-    <path d="M99 13h7v49l-3.5 8-3.5-8zM99 22h7M99 60h7M95 92h18V74zM102 87h6v-6M94 83h-9v9h9M85 86h3m2 3h3" />
-  </>}
-  {kind === 'Exteriors' && <>
-    <path d="M7 90h106M15 90V41l34-14v63M49 90V27l31 10v53M15 48l34-14M21 50v31m9-34v34m9-38v38M15 60l34-9M15 72l34-8M54 44l20 6v12l-20-5zM54 68l20 4v12l-20-2zM59 46v12m9-9v11M59 69v14m9-12v12" />
-    <path d="M83 11h29v18H83zM87 29v9m21-9v9M97 38v52M84 56h27l-5-5H84zM84 64h27v5H89zM94 18h11M89 23h16M83 84h10" />
-  </>}
+
+  </g>}
   {kind === 'Furniture' && <>
     <path d="M10 12h100v23H10zM35 12v23m22-23v23m24-23v23M16 23h5m23 0h5m17 0h5m19 0h5M10 42h100v29H10zM10 49h100M34 49v22m28-22v22m25-22v22M39 56h17m-17 8h17M68 53h13v14H68zM92 56h6M18 57h6M90 39v-7m-6 0h6M11 71v4m97-4v4" />
     <path d="M10 82h36v5H10zM14 87v10m28-10v10M28 87v9h14M32 91h5M60 84v-5h39v5M59 84q-5 0-5 5v5h51v-5q0-5-6-5v7H60zM58 94v3m43-3v3" />
   </>}
 </svg>
+)}
 
 <style>
-  .market-glyph { display: block; width: 100%; max-width: 150px; height: auto; margin: 0 auto; color: var(--accent); }
+  .market-glyph { display: block; width: 100%; max-width: 150px; aspect-ratio: 6 / 5; height: auto; object-fit: contain; margin: 0 auto; color: var(--accent); }
+  .supplied-glyph { mix-blend-mode: multiply; }
+  :global(.dark-theme) .supplied-glyph { filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
 </style>

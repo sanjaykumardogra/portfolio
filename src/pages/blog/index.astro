@@ -1,48 +1,132 @@
 ---
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
-import BlogPostPreview from '../../components/BlogPostPreview.astro';
-import BlogPostListPreview from '../../components/BlogPostListPreview.astro';
+import { formatDate } from '../../utils/formatDate';
 
-const allPosts = await getCollection('blog', ({ data }) => {
-  return import.meta.env.DEV || !data.draft;
-});
-
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const base = import.meta.env.BASE_URL;
+const allPosts = await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const [latestPost, ...otherPosts] = sortedPosts;
+const topics: Record<string, string> = {
+  'sustainable-growth-construction': 'Sustainable growth',
+  'gatekeepers-mdf-strategy': 'Market strategy',
+  'transforming-infrastructure': 'Infrastructure',
+  'one-man-army': 'Market development',
+  'plug-n-play': 'Business growth',
+  'project-sales-excellence': 'Project sales',
+};
+const topic = (slug: string) => topics[slug] || 'Industry perspective';
+const readingTime = (body: string) => Math.max(1, Math.ceil(body.trim().split(/\s+/).length / 200));
+const summary = (post: typeof sortedPosts[number]) => post.data.description || post.body.replace(/^#+\s+.*$/gm, '').replace(/[*_`\[\]]/g, '').trim().slice(0, 160) + '…';
 ---
 
-<MainLayout title="Insights | SK Dogra" description="Industry insights and perspectives">
-  <h1 class="page-title">Insights</h1>
-  <p class="page-intro">{sortedPosts.length} articles on industry trends, business strategy, and market perspectives.</p>
+<MainLayout title="Insights | SK Dogra" description="Perspectives on market development, project sales and the building materials industry.">
+  <header class="insights-header">
+    <span class="eyebrow">The industry journal</span>
+    <h1>Insights<span class="title-dot">.</span></h1>
+    <p>Perspectives on market development, business strategy and the building materials industry.</p>
+    <div class="collection-meta"><span>{sortedPosts.length} articles</span><span>By S K Dogra</span></div>
+  </header>
 
-  <BlogPostListPreview posts={sortedPosts} />
+  {latestPost && (
+    <section aria-label="Latest insight">
+      <a class="featured article-card" href={`${base}blog/${latestPost.slug}`}>
+        <div class="featured-art" aria-hidden="true">
+          <svg viewBox="0 0 180 180" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="90" cy="90" r="69" /><circle cx="90" cy="90" r="48" stroke-dasharray="3 7" />
+            <path d="M40 123h100M51 123V99h19v24M80 123V79h19v44M109 123V56h19v67M48 81l34-24 23 4 27-27M120 34h12v12" />
+          </svg>
+          <span>Building what comes next</span>
+        </div>
+        <div class="featured-body">
+          <div class="feature-labels"><span class="eyebrow">Latest insight</span><span class="featured-topic">{topic(latestPost.slug)}</span></div>
+          <div class="article-meta"><time datetime={latestPost.data.date.toISOString()}>{formatDate(latestPost.data.date)}</time><span>{readingTime(latestPost.body)} min read</span></div>
+          <h2>{latestPost.data.title}</h2>
+          <p>{summary(latestPost)}</p>
+          <span class="read-link">Read the story <span aria-hidden="true">↗</span></span>
+        </div>
+      </a>
+    </section>
+  )}
 
-  <div class="post-list">
-    {sortedPosts.map(post => <BlogPostPreview post={post} />)}
-  </div>
+  {otherPosts.length > 0 && (
+    <section class="archive" aria-labelledby="archive-title">
+      <div class="archive-heading"><h2 id="archive-title">The reading room</h2><span>{otherPosts.length} more perspectives</span></div>
+      <div class="article-grid">
+        {otherPosts.map((post, i) => (
+          <a class="article-card archive-card" href={`${base}blog/${post.slug}`}>
+            <span class="article-number" aria-hidden="true">{String(i + 2).padStart(2, '0')}</span>
+            <div class="article-copy">
+            <span class="article-topic">{topic(post.slug)}</span>
+            <div class="article-meta"><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time><span>{readingTime(post.body)} min read</span></div>
+            <h3>{post.data.title}</h3>
+            <p>{summary(post)}</p>
+            </div>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+  {sortedPosts.length === 0 && <p class="empty-state">New perspectives will be shared here soon.</p>}
 </MainLayout>
 
 <style>
-  .page-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2rem;
-    font-weight: 700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
+  .insights-header { position: relative; margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border-color); }
+  .eyebrow { color: var(--accent); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(3.2rem, 7vw, 4.6rem); line-height: 1.1; letter-spacing: -0.045em; color: var(--text-color); margin: 10px 0 16px; }
+  .title-dot { color: var(--accent); }
+  .insights-header p { max-width: 530px; color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin: 0; }
+  .collection-meta { display: flex; align-items: center; gap: 14px; margin-top: 18px; color: var(--text-muted); font-size: 0.75rem; }
+  .collection-meta span + span { border-left: 1px solid var(--border-color); padding-left: 14px; }
+  .article-card { text-decoration: none; color: var(--text-color); }
+  .article-card:hover { text-decoration: none; }
+  .article-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+  .featured { display: grid; grid-template-columns: minmax(0, 1fr) 180px; position: relative; overflow: hidden; border-radius: 18px; background: #123c3a; border: 1px solid #2c5954; box-shadow: 0 14px 36px rgba(15,50,47,0.12); color: #f5f9f7; transition: box-shadow 0.2s ease; }
+  .featured:hover { color: #fff; box-shadow: 0 18px 40px rgba(15,50,47,0.22); }
+  .featured-body { grid-column: 1; grid-row: 1; position: relative; z-index: 1; padding: 30px 0 30px 30px; }
+  .featured-art { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; color: #9fd6c1; background: radial-gradient(ellipse at right, #29665a, transparent 75%); }
+  .featured-art svg { width: 170px; max-width: 100%; }
+  .featured-art > span { max-width: 120px; margin-top: 18px; font-size: 0.6rem; letter-spacing: 0.13em; text-transform: uppercase; text-align: center; line-height: 1.7; }
+  .feature-labels { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .featured .eyebrow { color: #d3ec9b; }
+  .featured-topic { color: #c1ddd5; font-size: 0.65rem; border-left: 1px solid #587d71; padding-left: 10px; }
+  .article-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--text-muted); font-size: 0.7rem; line-height: 1.5; }
+  .article-meta > span::before { content: '·'; margin-right: 12px; }
+  .featured-body .article-meta { margin-top: 18px; color: #b4cec6; }
+  .featured h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.3; margin: 12px 0 14px; letter-spacing: -0.025em; }
+  .featured p { color: #cee0d9; font-size: 0.85rem; line-height: 1.7; margin: 0 0 24px; }
+  .read-link { display: inline-flex; align-items: center; gap: 20px; padding: 9px 14px; border-radius: 7px; background: #d3ec9b; color: #1c372c; font-size: 0.75rem; font-weight: 600; }
+  .read-link > span { font-size: 1rem; }
+  .archive { margin-top: 38px; }
+  .archive-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color); }
+  .archive-heading h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.45rem; margin: 0; }
+  .archive-heading > span { font-size: 0.7rem; color: var(--text-muted); }
+  .article-grid { display: flex; flex-direction: column; }
+  .archive-card { display: grid; grid-template-columns: 36px minmax(0, 1fr) 36px; align-items: start; gap: 18px; padding: 26px 12px; border-bottom: 1px solid var(--border-color); transition: background 0.2s ease; }
+  .archive-card:last-child { border-bottom: 0; }
+  .archive-card:hover { background: var(--accent-subtle); color: var(--text-color); }
+  .article-number { color: var(--accent); opacity: 0.65; font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; line-height: 1; padding-top: 4px; }
+  .article-topic { display: block; color: var(--accent); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 7px; }
+  .archive-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; line-height: 1.4; margin: 10px 0; transition: color 0.2s ease; }
+  .archive-card:hover h3 { color: var(--accent); }
+  .archive-card p { color: var(--text-muted); font-size: 0.83rem; line-height: 1.7; margin: 0; }
+  .row-arrow { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-color); color: var(--accent); margin-top: 28px; transition: background 0.2s ease; }
+  .archive-card:hover .row-arrow { background: var(--accent-glow); }
+  :global(.dark-theme) .featured { background: #17332f; border-color: #35584c; box-shadow: none; }
+  :global(.dark-theme) .featured-art { background: radial-gradient(ellipse at right, #294c3e, transparent 75%); }
+  .empty-state { color: var(--text-muted); }
+  @media (max-width: 600px) {
+    .featured { grid-template-columns: 1fr; }
+    .featured-art { display: none; }
+    .featured-body { padding: 24px; }
+    .feature-labels { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .featured-topic { border-left: 0; padding-left: 0; }
+    .archive-card { grid-template-columns: minmax(0, 1fr) 28px; gap: 12px; padding: 24px 0; }
+    .article-number { display: none; }
+    .row-arrow { width: 28px; height: 28px; }
+    .archive-card h3 { font-size: 1.15rem; }
+    .archive-heading h2 { font-size: 1.3rem; }
   }
-
-  .page-intro {
-    color: var(--text-muted);
-    margin-bottom: 32px;
-    font-size: 0.95rem;
-  }
-
-  .post-list {
-    margin-top: 8px;
-  }
+  @media (prefers-reduced-motion: reduce) { .article-card, .archive-card h3, .row-arrow { transition: none; } }
 </style>

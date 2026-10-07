@@ -35,7 +35,7 @@ const recentPosts = sortedPosts.slice(0, 5);
           <span class="slot-track" aria-hidden="true"></span>
           <span class="stat-value">30<span class="stat-plus">+</span></span>
         </span>
-        <span class="stat-label">Years Experience</span>
+        <span class="stat-label">Work Experience</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
@@ -53,16 +53,21 @@ const recentPosts = sortedPosts.slice(0, 5);
         </span>
         <span class="stat-label">Contacts</span>
       </div>
+      <div class="stat-divider"></div>
+      <div class="stat stat-network">
+        <span class="stat-number"><span class="stat-value">A2G</span></span>
+        <span class="stat-label">Network</span>
+      </div>
     </div>
     <section class="market-presence" aria-labelledby="markets-title">
-      <h2 id="markets-title"><span>A2G</span> Presence</h2>
+      <h2 id="markets-title">Market <span>Verticals</span></h2>
       <ul class="markets-grid">
         {([
-          { name: 'Infrastructure', detail: 'Transit-oriented development' },
-          { name: 'Realty', detail: 'Homes, offices, towers & malls' },
-          { name: 'Interiors', detail: 'Floor to ceiling · Wall to wall' },
-          { name: 'Exteriors', detail: 'Façades, cladding & signage' },
-          { name: 'Furniture', detail: 'Moveable & built-in modular' },
+          { name: 'Realty', detail: 'Residential & Non-Resi. Buildings' },
+          { name: 'Interiors', detail: 'Floor to Ceiling - Wall to Wall' },
+          { name: 'Exteriors', detail: 'Façades, Cladding, Signage' },
+          { name: 'Furniture', detail: 'Moveable & Built-in Modular' },
+          { name: 'Public Transport', detail: 'Rail Coaches, Bus Body, & Ship Building' },
         ] as const).map((market) => (
           <li class="market-card">
             <MarketGlyph kind={market.name} />
@@ -191,7 +196,11 @@ const recentPosts = sortedPosts.slice(0, 5);
 
   :global(.dark-theme) .market-card { background: #1a202b; border-color: #30394a; }
 
+  .stat-network .stat-number { color: var(--accent); }
+
   @media (max-width: 600px) {
+    .hero .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+    .hero-stats .stat-divider { display: none; }
     .markets-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .market-card:last-child { grid-column: 1 / -1; }
     .market-name { font-size: 0.85rem; }
