@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --on-accent: #ffffff;
   --bg-color: #f6f7f6;
   --text-color: #1a1a2e;
   --text-muted: #64748b;
-  --text-subtle: #94a3b8;
+  --text-subtle: #64748b;
   --header-bg: rgba(255, 255, 255, 0.88);
   --content-bg: #ffffff;
   --border-color: #e2e8f0;
@@ -23,7 +26,7 @@
   --date-color: #64748b;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 12px 32px rgba(15, 118, 110, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
-  --hero-bg: linear-gradient(160deg, #fafbfa 0%, #f0faf8 40%, #e6f6f3 70%, #ddf2ee 100%);
+  --hero-bg: linear-gradient(145deg, #ffffff, #f0f7f5);
 
   --remark-blue: #3b82f6;
   --remark-green: #10b981;
@@ -33,10 +36,11 @@
 }
 
 .dark-theme {
+  --on-accent: #10231f;
   --bg-color: #0f1117;
   --text-color: #d8dde6;
-  --text-muted: #8a92a4;
-  --text-subtle: #5c6478;
+  --text-muted: #a2adbd;
+  --text-subtle: #9ba6b6;
   --header-bg: rgba(15, 17, 23, 0.92);
   --content-bg: #151820;
   --border-color: #222738;
@@ -55,7 +59,7 @@
   --date-color: #8a92a4;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   --card-shadow-hover: 0 12px 32px rgba(107, 179, 166, 0.06), 0 4px 12px rgba(0, 0, 0, 0.4);
-  --hero-bg: linear-gradient(160deg, #0f1117 0%, #121620 40%, #141a26 70%, #171e2c 100%);
+  --hero-bg: linear-gradient(145deg, #151b24, #162520);
 }
 
 /* Entrance animations */
@@ -87,7 +91,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.4s ease, color 0.4s ease;

@@ -74,7 +74,7 @@ const summary = (post: typeof sortedPosts[number]) => post.data.description || p
 <style>
   .insights-header { position: relative; margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border-color); }
   .eyebrow { color: var(--accent); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-  h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(3.2rem, 7vw, 4.6rem); line-height: 1.1; letter-spacing: -0.045em; color: var(--text-color); margin: 10px 0 16px; }
+  h1 { font-family: var(--font-heading); font-size: clamp(3.2rem, 7vw, 4.6rem); line-height: 1.1; letter-spacing: -0.045em; color: var(--text-color); margin: 10px 0 16px; }
   .title-dot { color: var(--accent); }
   .insights-header p { max-width: 530px; color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin: 0; }
   .collection-meta { display: flex; align-items: center; gap: 14px; margin-top: 18px; color: var(--text-muted); font-size: 0.75rem; }
@@ -94,21 +94,21 @@ const summary = (post: typeof sortedPosts[number]) => post.data.description || p
   .article-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--text-muted); font-size: 0.7rem; line-height: 1.5; }
   .article-meta > span::before { content: '·'; margin-right: 12px; }
   .featured-body .article-meta { margin-top: 18px; color: #b4cec6; }
-  .featured h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.3; margin: 12px 0 14px; letter-spacing: -0.025em; }
+  .featured h2 { font-family: var(--font-heading); font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.3; margin: 12px 0 14px; letter-spacing: -0.025em; }
   .featured p { color: #cee0d9; font-size: 0.85rem; line-height: 1.7; margin: 0 0 24px; }
   .read-link { display: inline-flex; align-items: center; gap: 20px; padding: 9px 14px; border-radius: 7px; background: #d3ec9b; color: #1c372c; font-size: 0.75rem; font-weight: 600; }
   .read-link > span { font-size: 1rem; }
   .archive { margin-top: 38px; }
   .archive-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color); }
-  .archive-heading h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.45rem; margin: 0; }
+  .archive-heading h2 { font-family: var(--font-heading); font-size: 1.45rem; margin: 0; }
   .archive-heading > span { font-size: 0.7rem; color: var(--text-muted); }
   .article-grid { display: flex; flex-direction: column; }
   .archive-card { display: grid; grid-template-columns: 36px minmax(0, 1fr) 36px; align-items: start; gap: 18px; padding: 26px 12px; border-bottom: 1px solid var(--border-color); transition: background 0.2s ease; }
   .archive-card:last-child { border-bottom: 0; }
   .archive-card:hover { background: var(--accent-subtle); color: var(--text-color); }
-  .article-number { color: var(--accent); opacity: 0.65; font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; line-height: 1; padding-top: 4px; }
+  .article-number { color: var(--accent); opacity: 0.65; font-family: var(--font-heading); font-size: 1.3rem; line-height: 1; padding-top: 4px; }
   .article-topic { display: block; color: var(--accent); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 7px; }
-  .archive-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; line-height: 1.4; margin: 10px 0; transition: color 0.2s ease; }
+  .archive-card h3 { font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.4; margin: 10px 0; transition: color 0.2s ease; }
   .archive-card:hover h3 { color: var(--accent); }
   .archive-card p { color: var(--text-muted); font-size: 0.83rem; line-height: 1.7; margin: 0; }
   .row-arrow { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-color); color: var(--accent); margin-top: 28px; transition: background 0.2s ease; }

@@ -48,7 +48,7 @@ const base = import.meta.env.BASE_URL;
     <ThemeToggle />
     <SearchModal />
     <NewsletterModal />
-    
+
     <script is:inline src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
     <script>
       if (window.matchMedia('(pointer: fine)').matches) {
@@ -111,7 +111,7 @@ const base = import.meta.env.BASE_URL;
   }
 
   .footer-name {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color);

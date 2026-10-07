@@ -84,28 +84,19 @@ const linkedin = 'https://www.linkedin.com/in/skdogra';
   }
 
   h1 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 40%, #25d366 70%, #d97706 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: gradientShift 6s ease-in-out infinite alternate;
     margin-bottom: 10px;
+
+    color: var(--text-color);
+    background: none;
+    -webkit-text-fill-color: currentColor;
   }
 
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
-  }
-
-  :global(.dark-theme) h1 {
-    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #4ade80 70%, #fbbf24 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-size: 200% 200%;
   }
 
   .intro {
@@ -134,13 +125,13 @@ const linkedin = 'https://www.linkedin.com/in/skdogra';
     justify-content: center;
     font-weight: 700;
     font-size: 1.1rem;
-    color: #fff;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: var(--on-accent);
+    background: var(--accent-gradient);
     flex-shrink: 0;
   }
 
   .profile-info h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.25rem;
     margin: 0 0 4px;
     color: var(--text-color);
@@ -221,25 +212,22 @@ const linkedin = 'https://www.linkedin.com/in/skdogra';
 
   .divider {
     height: 2px;
-    background: linear-gradient(to right, transparent, #2563eb, #25d366, #7c3aed, transparent);
+    background: var(--accent-gradient);
     margin: 36px 0;
     border-radius: 1px;
     opacity: 0.4;
   }
 
   .qr-section h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.3rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
     margin-bottom: 8px;
   }
 
   :global(.dark-theme) .qr-section h2 {
-    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    background: var(--accent-gradient);
     -webkit-background-clip: text;
     background-clip: text;
   }

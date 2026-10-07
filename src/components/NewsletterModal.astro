@@ -2,10 +2,10 @@
 const base = import.meta.env.BASE_URL;
 ---
 
-<div 
-  id="newsletter-modal" 
+<div
+  id="newsletter-modal"
   data-base={base}
-  x-data="{ 
+  x-data="{
     open: false,
     submitted: false,
     init() {
@@ -47,32 +47,32 @@ const base = import.meta.env.BASE_URL;
   x-transition:leave-start="opacity-100 transform scale-100"
   x-transition:leave-end="opacity-0 transform scale-90"
   class="newsletter-modal"
-  style="display: none;" 
+  style="display: none;"
   :style="open ? 'display: flex' : 'display: none'"
 >
   <div class="newsletter-backdrop" @click="dismiss()"></div>
-  
+
   <div class="newsletter-container">
     <div class="newsletter-header">
       <span class="newsletter-title">Stay Updated</span>
       <button class="close-btn" @click="dismiss()">&times;</button>
     </div>
-    
+
     <div class="newsletter-content" x-show="!submitted">
       <p>Get the latest insights delivered straight to your inbox.</p>
-      
+
       <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" @load="handleLoad()"></iframe>
-      <form 
-        action="https://docs.google.com/forms/d/e/1FAIpQLSfZIQJga0QNT31bctskhz0S3sHPeLnTjYBUAhnufC1yEdcl-g/formResponse" 
-        method="post" 
+      <form
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfZIQJga0QNT31bctskhz0S3sHPeLnTjYBUAhnufC1yEdcl-g/formResponse"
+        method="post"
         target="hidden_iframe"
         @submit="submitForm()"
         class="newsletter-form"
       >
-        <input 
-          type="email" 
-          name="entry.1831353926" 
-          placeholder="Enter your email" 
+        <input
+          type="email"
+          name="entry.1831353926"
+          placeholder="Enter your email"
           required
           class="email-input"
         >
@@ -101,14 +101,14 @@ const base = import.meta.env.BASE_URL;
     align-items: center;
     padding: 20px;
   }
-  
+
   .newsletter-backdrop {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
   }
-  
+
   .newsletter-container {
     position: relative;
     width: 100%;
@@ -119,7 +119,7 @@ const base = import.meta.env.BASE_URL;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     overflow: hidden;
   }
-  
+
   .newsletter-header {
     display: flex;
     align-items: center;
@@ -127,9 +127,9 @@ const base = import.meta.env.BASE_URL;
     padding: 16px 20px;
     border-bottom: 1px solid var(--border-color);
   }
-  
+
   .newsletter-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--accent);
@@ -149,27 +149,27 @@ const base = import.meta.env.BASE_URL;
   .close-btn:hover {
     color: var(--text-color);
   }
-  
+
   .newsletter-content, .newsletter-success {
     padding: 24px;
     text-align: center;
     color: var(--text-color);
   }
-  
+
   h3 {
     margin: 0 0 8px;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     color: var(--accent);
     font-size: 1.2rem;
   }
-  
+
   p {
     margin: 0 0 20px;
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
   }
-  
+
   .email-input {
     width: 100%;
     padding: 10px 14px;
@@ -177,52 +177,52 @@ const base = import.meta.env.BASE_URL;
     border-radius: 8px;
     background-color: var(--highlight-bg);
     color: var(--text-color);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     margin-bottom: 16px;
     box-sizing: border-box;
     transition: border-color 0.2s;
   }
-  
+
   .email-input:focus {
     outline: none;
     border-color: var(--accent-light);
     box-shadow: 0 0 0 3px var(--accent-subtle);
   }
-  
+
   .form-actions {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
   }
-  
+
   button {
     padding: 8px 18px;
     border-radius: 8px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     cursor: pointer;
     border: none;
     transition: all 0.2s;
   }
-  
+
   .btn-cancel {
     background: transparent;
     color: var(--text-muted);
     border: 1px solid transparent;
   }
-  
+
   .btn-cancel:hover {
     color: var(--text-color);
     border-color: var(--border-color);
   }
-  
+
   .btn-submit {
     background-color: var(--accent);
     color: #fff;
     font-weight: 600;
   }
-  
+
   .btn-submit:hover {
     background-color: var(--accent-light);
   }

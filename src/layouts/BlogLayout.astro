@@ -9,18 +9,18 @@ const formattedDate = formatDate(frontmatter.date);
 
 <MainLayout title={frontmatter.title}>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
-  
+
   <article class="blog-post">
     <header class="blog-header">
       <a href={`${base}blog`} class="back-link">&larr; Back to Insights</a>
       <h1 class="blog-post-title">{frontmatter.title}</h1>
       <div class="blog-post-date">{formattedDate}</div>
     </header>
-    
+
     <div class="blog-post-content markdown-content">
       <slot />
     </div>
-    
+
     <footer class="blog-post-footer">
       <a href={`${base}blog`} class="back-link">&larr; Back to Insights</a>
     </footer>
@@ -46,21 +46,21 @@ const formattedDate = formatDate(frontmatter.date);
     color: var(--accent);
     text-decoration: none;
   }
-  
+
   .blog-post-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
     color: var(--text-color);
     margin-bottom: 8px;
     line-height: 1.3;
   }
-  
+
   .blog-post-date {
     color: var(--date-color);
     font-size: 0.9rem;
   }
-  
+
   .blog-post-content {
     line-height: 1.7;
     margin-bottom: 40px;
@@ -82,7 +82,7 @@ const formattedDate = formatDate(frontmatter.date);
     font-weight: 600;
     line-height: 1.25;
     position: relative;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
   }
 
   .markdown-content :global(h1) {
@@ -359,7 +359,7 @@ const formattedDate = formatDate(frontmatter.date);
   .markdown-content :global(dl) { margin: 1rem 0; }
   .markdown-content :global(dt) { font-weight: 600; margin-top: 1rem; }
   .markdown-content :global(dd) { margin-left: 2rem; margin-bottom: 0.5rem; }
-  
+
   .blog-post-footer {
     margin-top: 40px;
     padding-top: 20px;
