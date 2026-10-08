@@ -1,32 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: var(--font-body);
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --on-accent: #ffffff;
-  --bg-color: #f6f7f6;
-  --text-color: #1a1a2e;
-  --text-muted: #64748b;
-  --text-subtle: #64748b;
-  --header-bg: rgba(255, 255, 255, 0.88);
+  --sky: #126c9a;
+  --sky-subtle: #eaf6fc;
+  --fresh-green: #25d366;
+  --bg-color: #f3f6f0;
+  --text-color: #172b29;
+  --text-muted: #536761;
+  --text-subtle: #536761;
+  --header-bg: rgba(255, 255, 255, 0.96);
   --content-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --border-color-light: #f1f5f9;
-  --accent: #0f766e;
-  --accent-deep: #115e59;
-  --accent-light: #14b8a6;
-  --accent-warm: #d97706;
-  --accent-subtle: #f0fdfa;
+  --border-color: #dbe7df;
+  --border-color-light: #edf3ef;
+  --accent: #087f68;
+  --accent-deep: #075e54;
+  --accent-light: #25d366;
+  --accent-warm: #087f68;
+  --accent-subtle: #e7f8ed;
   --accent-glow: rgba(15, 118, 110, 0.12);
-  --accent-gradient: linear-gradient(135deg, #115e59, #0f766e, #0d9488, #14b8a6);
-  --highlight-bg: #f8faf9;
-  --highlight-warm: #f0fdfa;
-  --link-color: #0d9488;
-  --date-bg: #f1f5f9;
-  --date-color: #64748b;
+  --accent-gradient: linear-gradient(135deg, #075e54, #087f68, #126c9a, #25d366);
+  --highlight-bg: #f2f8f3;
+  --highlight-warm: #e7f8ed;
+  --link-color: #126c9a;
+  --date-bg: #edf3ef;
+  --date-color: #536761;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 12px 32px rgba(15, 118, 110, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
-  --hero-bg: linear-gradient(145deg, #ffffff, #f0f7f5);
+  --hero-bg: linear-gradient(145deg, #ffffff, #e7f8ed);
 
   --remark-blue: #3b82f6;
   --remark-green: #10b981;
@@ -37,29 +40,32 @@
 
 .dark-theme {
   --on-accent: #10231f;
-  --bg-color: #0f1117;
-  --text-color: #d8dde6;
-  --text-muted: #a2adbd;
-  --text-subtle: #9ba6b6;
-  --header-bg: rgba(15, 17, 23, 0.92);
-  --content-bg: #151820;
-  --border-color: #222738;
-  --border-color-light: #1c2030;
-  --accent: #6bb3a6;
-  --accent-deep: #549e92;
-  --accent-light: #86c7bc;
-  --accent-warm: #d4a544;
+  --sky: #7dd3fc;
+  --sky-subtle: #172f3b;
+  --fresh-green: #25d366;
+  --bg-color: #0b141a;
+  --text-color: #edf5f1;
+  --text-muted: #bacbc4;
+  --text-subtle: #a9bfb5;
+  --header-bg: rgba(17, 27, 33, 0.96);
+  --content-bg: #111b21;
+  --border-color: #2b3d42;
+  --border-color-light: #233339;
+  --accent: #55dba4;
+  --accent-deep: #36bf8c;
+  --accent-light: #a5f3c4;
+  --accent-warm: #a5f3c4;
   --accent-subtle: rgba(107, 179, 166, 0.07);
   --accent-glow: rgba(107, 179, 166, 0.10);
-  --accent-gradient: linear-gradient(135deg, #549e92, #6bb3a6, #86c7bc, #a0d6cd);
-  --highlight-bg: #1a1e2a;
+  --accent-gradient: linear-gradient(135deg, #36bf8c, #55dba4, #a5f3c4, #a0d6cd);
+  --highlight-bg: #18282d;
   --highlight-warm: rgba(107, 179, 166, 0.04);
-  --link-color: #6bb3a6;
-  --date-bg: #1e2332;
-  --date-color: #8a92a4;
+  --link-color: #55dba4;
+  --date-bg: #18282d;
+  --date-color: #a9bfb5;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   --card-shadow-hover: 0 12px 32px rgba(107, 179, 166, 0.06), 0 4px 12px rgba(0, 0, 0, 0.4);
-  --hero-bg: linear-gradient(145deg, #151b24, #162520);
+  --hero-bg: linear-gradient(145deg, #111b21, #14382f);
 }
 
 /* Entrance animations */
@@ -235,4 +241,18 @@ pre {
 .markdown-content .expressive-code figure.frame pre {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+/* Shared reading rhythm and clear interaction states. */
+html { font-size: 16px; scroll-padding-top: 110px; }
+body { -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; text-wrap: balance; }
+p, li { overflow-wrap: break-word; }
+.content p { text-wrap: pretty; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--sky); outline-offset: 4px;
+}
+::selection { background: var(--accent); color: var(--on-accent); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

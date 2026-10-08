@@ -153,4 +153,12 @@ const base = import.meta.env.BASE_URL;
   a:hover {
     text-decoration: underline;
   }
+
+  .about-page { max-width: 65ch; margin-inline: auto; font-size: 1.0625rem; }
+  p { line-height: 1.8; margin-bottom: 1.1em; }
+  h1 { font-size: clamp(2rem, 5vw, 2.6rem); letter-spacing: -0.035em; }
+  h2 { font-size: 1.35rem; line-height: 1.4; padding-bottom: 12px; }
+  .about-section { margin-bottom: 36px; }
+  @media (max-width: 480px) { .about-page { font-size: 1rem; } }
+
 </style>

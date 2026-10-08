@@ -365,4 +365,12 @@ const formattedDate = formatDate(frontmatter.date);
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
   }
+
+  .blog-post { max-width: 65ch; margin-inline: auto; }
+  .blog-post-content { font-size: 1.0625rem; line-height: 1.8; }
+  .markdown-content :global(p), .markdown-content :global(li) { line-height: 1.8; }
+  .markdown-content :global(a) { color: var(--sky); text-decoration: underline; text-underline-offset: 3px; }
+  .blog-post-title { font-size: clamp(1.75rem, 4vw, 2.4rem); letter-spacing: -0.03em; }
+  @media (max-width: 480px) { .blog-post-content { font-size: 1rem; } }
+
 </style>

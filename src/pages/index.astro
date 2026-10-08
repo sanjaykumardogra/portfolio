@@ -682,4 +682,23 @@ const recentPosts = sortedPosts.slice(0, 5);
       display: none;
     }
   }
+
+  .hero-subtitle { max-width: 65ch; font-size: 1.0625rem; line-height: 1.8; }
+  h1 { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 600; letter-spacing: -0.045em; }
+  .hero-badge { border-radius: 12px; background: var(--accent-subtle); font-size: 0.7rem; letter-spacing: 0.045em; }
+  .hero-stats { background: var(--content-bg); }
+  .stat-number { font-variant-numeric: tabular-nums; }
+  .market-card, :global(.dark-theme) .market-card { background: var(--content-bg); border-color: var(--border-color); border-radius: 18px; }
+  .market-name { font-size: 0.8125rem; line-height: 1.4; }
+  .market-detail { font-size: 0.75rem; line-height: 1.6; }
+  .link-card { background: var(--content-bg); }
+  .link-card-desc { font-size: 0.875rem; line-height: 1.55; }
+  .link-card-arrow { color: var(--sky); background: var(--sky-subtle); border-color: transparent; }
+  .link-card-resume { background: var(--accent-subtle); }
+  .post-card-date { font-size: 0.875rem; color: var(--text-muted); }
+  @media (max-width: 480px) {
+    .hero-subtitle { font-size: 1rem; line-height: 1.75; }
+    .hero-badge-secondary { font-size: 0.65rem; }
+  }
+
 </style>

@@ -232,6 +232,20 @@ const routePath = raw.length > 1 && raw.endsWith('/') ? raw.slice(0, -1) : raw;
       padding: 5px;
     }
   }
+
+  .nav-link { min-height: 40px; display: inline-flex; align-items: center; }
+  .nav-link.active { background: var(--accent-subtle); }
+  .nav-link.active::after { display: none; }
+  .resume-link { border-radius: 100px; }
+  @media (max-width: 600px) {
+    .header-inner, .header.scrolled .header-inner { height: auto; min-height: 88px; flex-wrap: wrap; padding: 10px 16px; gap: 6px; }
+    .site-logo { width: 100%; }
+    .nav .resume-link { display: none; }
+    .nav { width: 100%; justify-content: space-between; }
+    .nav-link { font-size: 0.8125rem; padding: 6px 8px; min-height: 36px; }
+    .search-btn { position: absolute; top: 10px; right: 16px; min-height: 32px; min-width: 32px; }
+  }
+
 </style>
 
 <script>

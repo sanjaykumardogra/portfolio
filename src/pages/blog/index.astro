@@ -129,4 +129,14 @@ const summary = (post: typeof sortedPosts[number]) => post.data.description || p
     .archive-heading h2 { font-size: 1.3rem; }
   }
   @media (prefers-reduced-motion: reduce) { .article-card, .archive-card h3, .row-arrow { transition: none; } }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 600; }
+  .eyebrow, .article-topic, .featured-topic { font-size: 0.75rem; letter-spacing: 0.07em; }
+  .article-meta, .collection-meta, .archive-heading > span { font-size: 0.8125rem; }
+  .featured p, .archive-card p { font-size: 1rem; line-height: 1.75; max-width: 65ch; }
+  .featured h2 { font-weight: 600; }
+  .featured .eyebrow { color: #a5f3c4; }
+  .read-link { background: #b9f6ca; color: #123c3a; border-radius: 100px; font-size: 0.875rem; padding: 12px 18px; }
+  .archive-card h3 { font-weight: 600; }
+
 </style>
